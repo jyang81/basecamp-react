@@ -1,21 +1,42 @@
-import React from 'react';
+import React, {Component} from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { withRouter } from 'react-router';
 import Login from './components/Login';
-import Home from './components/Home';
+import Dashboard from './components/Dashboard';
+import Signup from './components/Signup';
 
 
-function App() {
-  return (
-    <div className="App">
-      <div>BaseCamp</div>
-      <Router>
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/login" component={Login} />
-      </Router>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      user: {}
+    }
+  }
+
+  setUser = (data) => {
+    console.log("APP USER", data)
+    this.setState({
+      user: data.user
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <div>BaseCamp</div>
+        {/* if not logged in, redirect to log in page */}
+
+        <Router>
+          <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/dashboard" render={() => <Dashboard user={this.state.user} />} />
+        </Router>
+      </div>
+    )
+  }
 }
 
 export default App;
