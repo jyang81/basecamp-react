@@ -31,3 +31,9 @@
     transform: rotate(360deg);
   }
 }
+
+#error {
+  color: red;
+  font-size: 0.75rem;
+  margin: 1rem;
+}

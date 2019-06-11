@@ -9,18 +9,18 @@ import Signup from './components/Signup';
 
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
+  // constructor() {
+  //   super()
+    state = {
       user: {}
     }
-  }
+  // }
 
   setUser = (data) => {
-    console.log("APP USER", data)
     this.setState({
       user: data.user
-    })
+    }, () => {console.log('in set user', this.state.user)}
+  )
   }
 
   render() {
@@ -32,7 +32,7 @@ class App extends Component {
         <Router>
           <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/dashboard" render={() => <Dashboard user={this.state.user} />} />
+          <Route exact path="/dashboard" render={() => Object.keys(this.state.user).length !== 0 ? <Dashboard user={this.state.user} /> : null} />
         </Router>
       </div>
     )

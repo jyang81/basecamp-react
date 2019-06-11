@@ -29,11 +29,14 @@ class Login extends Component {
     .then(data => {
       console.log('data:', data)
       if (data && data.jwt) {
+        this.saveToken(data.jwt)
+        this.getProfile()
         this.setState({
           loggedIn: true
         })
-        this.saveToken(data.jwt)
-        this.getProfile()
+      } else {
+        const error = document.getElementById("error")
+        error.textContent = data.message
       }
     })
   }
@@ -87,6 +90,7 @@ class Login extends Component {
           </div>
             <input type="submit" value="Login" />
         </form>
+        <div id="error"></div>
         <div>
           New user? <Link to="/signup">Create an account</Link>
         </div>

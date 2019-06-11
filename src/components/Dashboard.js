@@ -1,28 +1,26 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: {}
-    }
-  }
+  // constructor(props) {
+  //   super(props)
+  //
+  // }
 
-  componentDidMount() {
-    this.setState({
-      user: this.props.user
-    })
-    console.log('Dashboard user:', this.state.user)
-  }
-
+  // static getDerivedStateFromProps
 
   render() {
+    console.log("USER", this.props.user)
     return (
       <div className="App-header">
       Dashboard Page
 
-      <p>{this.state.user.name}</p>
+      <p>{this.props.user.name}</p>
+      <p>{this.props.user.school}</p>
+      <p>{this.props.user.start_date}</p>
+      <p>{this.props.user.end_date}</p>
+      <p>{this.props.user.course.name}</p>
+
       </div>
     )
   }
