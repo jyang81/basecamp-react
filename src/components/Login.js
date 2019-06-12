@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom';
-
+import {Link} from 'react-router-dom';
 const URL = 'http://localhost:5000/api/v1/'
 
 class Login extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       loggedIn: false
     }
@@ -13,8 +12,8 @@ class Login extends Component {
     this.password = React.createRef()
   }
 
-  logIn = (ev) => {
-    ev.preventDefault()
+  logIn = () => {
+
     let email = this.email.current.value
     let password = this.password.current.value
 
@@ -27,13 +26,9 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then(data => {
-      console.log('data:', data)
       if (data && data.jwt) {
         this.saveToken(data.jwt)
         this.getProfile()
-        this.setState({
-          loggedIn: true
-        })
       } else {
         const error = document.getElementById("error")
         error.textContent = data.message
@@ -50,7 +45,6 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then(data => {
-      console.log('profile data:', data)
       this.props.setUser(data)
     })
   }
@@ -63,13 +57,15 @@ class Login extends Component {
     return localStorage.getItem('jwt')
   }
 
+  handleSubmit = (ev) => {
+    ev.preventDefault()
+    this.logIn()
+  }
+
   render() {
-    if (this.state.loggedIn === true) {
-      return <Redirect to='/dashboard' />
-    }
     return (
       <div>
-        <form onSubmit={this.logIn} >
+        <form onSubmit={this.handleSubmit} >
           <div>
             <label htmlFor="email">Email</label><br />
             <input
