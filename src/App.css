@@ -1,11 +1,8 @@
 .App {
+  color: white;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+  background-color: #330066;
+  min-height: 100vh;
 }
 
 .App-header {
@@ -23,24 +20,22 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header {
+  min-height: 10vh;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 #error {
   color: red;
-  font-size: 0.75rem;
+  font-size: 1rem;
   margin: 1rem;
 }
 
 .parent {
   display: grid;
-  grid-template-columns: 0.6fr 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr 2fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
@@ -51,16 +46,7 @@
     .div5 { grid-area: 1 / 3 / 4 / 4; }
 }
 
-/* .parent {
-  display: grid;
-  grid-template-columns: 0.6fr 1fr 1fr;
-  grid-template-rows: 0.5fr 1fr 1fr 1fr;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-    .div1 { grid-area: 1 / 1 / 2 / 4; }
-    .div2 { grid-area: 2 / 1 / 3 / 2; }
-    .div3 { grid-area: 3 / 1 / 4 / 2; }
-    .div4 { grid-area: 4 / 1 / 5 / 2; }
-    .div5 { grid-area: 2 / 2 / 5 / 3; }
-    .div6 { grid-area: 2 / 3 / 5 / 4; }
-} */
+.form {
+  max-width: 40vw;
+  margin: auto;
+}

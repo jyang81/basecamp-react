@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import { Button, Divider, Segment } from 'semantic-ui-react'
 const URL = 'http://localhost:5000/api/v1/'
 
 class Login extends Component {
@@ -64,32 +65,39 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} >
-          <div>
-            <label htmlFor="email">Email</label><br />
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              ref={this.email}
-             />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label><br />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              ref={this.password}
-             />
-          </div>
-            <input type="submit" value="Login" />
-        </form>
-        <div id="error"></div>
-        <div>
-          New user? <Link to="/signup">Create an account</Link>
-        </div>
+      <div className="form">
+      <Segment placeholder>
+          <form onSubmit={this.handleSubmit} className="ui form">
+            <div className="field">
+              <label>Email</label>
+              <div className="ui left icon input">
+                <input type="text"
+                      name="email"
+                      placeholder="Email"
+                      ref={this.email}
+                />
+                <i aria-hidden="true" className="user icon"></i>
+              </div>
+            </div>
+            <div className="field">
+              <label>Password</label>
+              <div className="ui left icon input">
+                <input type="password"
+                      name="password"
+                      placeholder="Password"
+                      ref={this.password}
+                />
+                <i aria-hidden="true" className="lock icon"></i>
+              </div>
+            </div>
+             <button type="submit" class="ui primary button">Login</button>
+          </form>
+          <div id="error"></div>
+          <Divider horizontal>Or</Divider>
+            <br/>
+            <Link to="/signup"><Button content='Sign up' icon='signup' size='big' /></Link>
+            <br/>
+      </Segment>
       </div>
     )
   }
@@ -98,3 +106,32 @@ class Login extends Component {
 }
 
 export default Login;
+
+
+// <div>
+//   <form onSubmit={this.handleSubmit} >
+//     <div>
+//       <label htmlFor="email">Email</label><br />
+//       <input
+//         type="text"
+//         name="email"
+//         placeholder="Email"
+//         ref={this.email}
+//        />
+//     </div>
+//     <div>
+//       <label htmlFor="password">Password</label><br />
+//       <input
+//         type="password"
+//         name="password"
+//         placeholder="Password"
+//         ref={this.password}
+//        />
+//     </div>
+//       <input type="submit" value="Login" />
+//   </form>
+//   <div id="error"></div>
+//   <div>
+//     New user? <Link to="/signup">Create an account</Link>
+//   </div>
+// </div>
