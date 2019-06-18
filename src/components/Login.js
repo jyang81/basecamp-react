@@ -90,7 +90,7 @@ class Login extends Component {
                 <i aria-hidden="true" className="lock icon"></i>
               </div>
             </div>
-             <button type="submit" class="ui primary button">Login</button>
+             <button type="submit" className="ui primary button">Login</button>
           </form>
           <div id="error"></div>
           <Divider horizontal>Or</Divider>

@@ -8,12 +8,16 @@ class Header extends Component {
   //   }
   // }
 
+  logOut() {
+    localStorage.removeItem('jwt')
+  }
+
   render() {
     return (
-      <div className="header">
+      <div className="header-bar">
         <div>BaseCamp logo</div>
         <div>{this.props.user.course.name}</div>
-        <div>{this.props.user.name}</div>
+        <div><i className="user circle icon"></i> {this.props.user.name}</div>
       </div>
     )
   }

@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import Header from './Header';
+import Timer from './Timer';
+import Mood from './Mood';
+import Help from './Help';
+import ToDo from './ToDo';
+import NoteBoard from './NoteBoard';
 
 
 
@@ -12,20 +17,20 @@ class Dashboard extends Component {
   // }
 
 
+
   render() {
     console.log("Dashboard User:", this.props.user)
     return (
       <div className="App">
       <Header user={this.props.user} />
       <div className="parent">
-        <p>{this.props.user.name}</p>
-        <p>{this.props.user.school}</p>
-        <p>{this.props.user.start_date}
-        {this.props.user.end_date}</p>
+        <Timer user={this.props.user} />
+        <Mood user={this.props.user} />
+        <ToDo user={this.props.user} />
+        <NoteBoard user={this.props.user} />
+        <Help />
 
-        {this.props.user.to_dos.map(to_do => {
-          return <p>{to_do.item}</p>
-        })}
+
       </div>
       </div>
     )
