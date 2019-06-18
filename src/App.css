@@ -104,6 +104,7 @@
   position: relative;
   width: 94% !important;
   margin: 1rem !important;
+  margin-top: 1px !important;
 }
 
 .indent {

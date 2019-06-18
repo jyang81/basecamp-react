@@ -21,7 +21,7 @@ class Note extends Component {
       <NoteItemModal
         user={this.props.user}
         createNoteItem={this.createNoteItem}
-        title={this.props.category.title}
+        category={this.props.category}
         />
 
     )

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 import ToDoItem from './ToDoItem';
 import ToDoModal from '../modals/ToDoModal';
 const URL = 'http://localhost:5000/api/v1/'
@@ -57,14 +57,17 @@ class ToDo extends Component {
     return (
       <div className="div4" >
         <Card fluid className="fullsize" >
-          <Card.Content header='To Dos' />
-          <div className="list">
-          {this.state.to_dos.map(to_do => {
-            return (
-              <ToDoItem key={to_do.id} to_do={to_do} deleteToDo={this.deleteToDo}/>
-            )
-          })}
-          </div>
+          <Card.Content>
+            <Card.Header>To Dos <Icon inverted color='orange' name='check square outline' />
+            </Card.Header>
+          </Card.Content>
+            <div className="list">
+            {this.state.to_dos.map(to_do => {
+              return (
+                <ToDoItem key={to_do.id} to_do={to_do} deleteToDo={this.deleteToDo}/>
+              )
+            })}
+            </div>
           <Card.Content extra>
              <ToDoModal user={this.props.user} createToDo={this.createToDo}/>
           </Card.Content>
