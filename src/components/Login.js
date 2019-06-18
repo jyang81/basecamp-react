@@ -63,6 +63,8 @@ class Login extends Component {
     this.logIn()
   }
 
+// FIX VERTICAL SPACING ISSUE ON FORM
+
   render() {
     return (
       <div className="form">
@@ -101,7 +103,6 @@ class Login extends Component {
       </div>
     )
   }
-
 
 }
 
