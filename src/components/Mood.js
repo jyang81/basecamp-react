@@ -17,7 +17,7 @@ class Mood extends Component {
       <Card fluid className="fullsize">
         <Card.Content header='Today I feel:' />
         <div className='content'>
-          <select class="ui dropdown">
+          <select className="ui dropdown">
             <option value="">Mood</option>
             <option value="10">10 - I know everything!</option>
             <option value="9">9 - Doing awesome</option>
