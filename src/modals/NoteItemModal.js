@@ -13,35 +13,40 @@ class NoteItemModal extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault()
     this.props.createNoteItem(ev)
-    this.closeModal()
-    console.log("TITLE", ev.target.elements["title"].value)
+    console.log("NOTE", ev.target.elements["content"].value)
   }
 
   render() {
     const {open} = this.state
     return (
-      <Modal size="tiny"
+      <Modal size="small"
         onClose={this.closeModal}
         open={open}
         trigger={<div
           className="post-it"
           onClick={() => this.setState({ open: true })}>
-         {this.props.title}</div>}
+         {this.props.category.title}</div>}
         closeIcon >
-        <Header icon='pin' content={this.props.title} />
+        <Header icon='pin' content={this.props.category.title} />
+        <Modal.Content scrolling>
+          <ul>
+            {this.props.category.notes.map(note => {
+              return (
+                <li key={note.id}>{note.content}</li>
+              )
+            })}
+          </ul>
+        </Modal.Content>
         <Modal.Content>
-
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>Category</label>
-            <input name="title" placeholder='Blog Ideas, Project Ideas, etc.' />
-          </Form.Field>
-
-          <Button color='green' type='submit'>
-            <Icon name='checkmark' /> Submit
-          </Button>
-        </Form>
-
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Field>
+              <label>Note</label>
+              <input name="content" placeholder='Thoughts, Ideas, Links, etc.' />
+            </Form.Field>
+            <Button color='blue' type='submit'>
+              <Icon name='plus' /> Add Note
+            </Button>
+          </Form>
         </Modal.Content>
       </Modal>
     )

@@ -27,13 +27,13 @@ class NoteModal extends Component {
         trigger={<Button onClick={() => this.setState({ open: true })}>
         <Icon name='plus square' /> Add New Note</Button>}
         closeIcon >
-        <Header icon='sticky note' content='Create a Note' />
+        <Header icon='sticky note outline' content='Create a Note' />
         <Modal.Content>
 
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Category</label>
-            <input name="title" placeholder='Blog Ideas, Project Ideas, etc.' />
+            <input name="title" placeholder='Blog Ideas, Project Ideas, Tips, etc.' />
           </Form.Field>
 
           <Button color='green' type='submit'>
