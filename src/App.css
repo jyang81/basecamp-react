@@ -36,9 +36,21 @@
 /* ---- TIMER ---- */
 
 .counter {
-  font-size: 4rem !important;
+  font-size: 6rem !important;
   padding: 1rem !important;
   font-weight: bold !important;
+}
+
+.spread {
+  display: inline-block;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 
 /***** POST IT note *****/
