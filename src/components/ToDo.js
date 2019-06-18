@@ -32,7 +32,7 @@ class ToDo extends Component {
     })
     .then(res => res.json())
     .then(to_do => {
-      console.log("1. created to do:", to_do )
+      console.log("created to do:", to_do )
       this.setState({
         to_dos: [...this.state.to_dos, to_do]
       })
