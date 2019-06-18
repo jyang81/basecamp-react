@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { Card, Icon } from 'semantic-ui-react'
-import ToDoItem from './ToDoItem';
+// import { Card, Icon } from 'semantic-ui-react'
+import NoteItemModal from '../modals/NoteItemModal';
+
 
 
 class Note extends Component {
@@ -11,16 +12,26 @@ class Note extends Component {
   //   }
   // }
 
-
+  createNoteItem = (ev) => {
+    console.log("new note item");
+  }
 
   render() {
     return (
-      <div className="post-it">
-        <div>{this.props.category.title}</div>
-      </div>
+      <NoteItemModal
+        user={this.props.user}
+        createNoteItem={this.createNoteItem}
+        title={this.props.category.title}
+        />
+
     )
   }
 
 }
 
 export default Note;
+
+// <div
+//   className="post-it">
+//   <div>{this.props.category.title}</div>
+// </div>
