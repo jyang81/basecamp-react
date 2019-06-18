@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, Icon } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import ToDoItem from './ToDoItem';
 import ToDoModal from '../modals/ToDoModal';
 const URL = 'http://localhost:5000/api/v1/'

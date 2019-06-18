@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, Icon, Checkbox, Segment } from 'semantic-ui-react'
+import { Card, Icon, Checkbox } from 'semantic-ui-react'
 import moment from 'moment'
 
 
