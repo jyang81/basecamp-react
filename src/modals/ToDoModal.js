@@ -7,7 +7,6 @@ class ToDoModal extends Component {
   }
 
   closeModal = () => {
-    console.log("close modal")
     this.setState({ open: false })
   }
 

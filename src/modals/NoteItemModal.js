@@ -3,7 +3,14 @@ import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react'
 
 class NoteItemModal extends Component {
   state = {
-    open: false
+    open: false,
+    notes: []
+  }
+
+  componentWillMount(){
+    this.setState({
+      notes: this.props.category.notes
+    })
   }
 
   closeModal = () => {
@@ -12,8 +19,32 @@ class NoteItemModal extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    this.props.createNoteItem(ev)
+    this.createNoteItem(ev)
+    ev.target.reset()
     console.log("NOTE", ev.target.elements["content"].value)
+  }
+
+  createNoteItem = (ev) => {
+    fetch(URL + 'notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.jwt
+      },
+      body: JSON.stringify({note: {
+        content: ev.target.elements["content"].value,
+        note_category_id: this.props.category.id
+      }})
+    })
+    .then(res => res.json())
+    .then(note => {
+      console.log("created note:", note)
+      this.setState({
+        notes: [...this.state.notes, note]
+      })
+    })
+    .catch(error => console.error(error))
   }
 
   render() {
@@ -30,7 +61,7 @@ class NoteItemModal extends Component {
         <Header icon='pin' content={this.props.category.title} />
         <Modal.Content scrolling>
           <ul>
-            {this.props.category.notes.map(note => {
+            {this.state.notes.map(note => {
               return (
                 <li key={note.id}>{note.content}</li>
               )

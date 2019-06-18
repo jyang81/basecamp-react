@@ -15,11 +15,6 @@ class App extends Component {
       user: {}
     }
 
-  // static getDerivedStateFromProps(props, state) {
-  //     console.log({props}, {state})
-  //     return {user: props.user}
-  //   }
-
   setUser = (data) => {
     this.setState({
       user: data.user,
@@ -52,7 +47,7 @@ export default App;
 
 
 
-{/*// ============= LOG IN FUNCTIONS =================
+// ============= LOG IN FUNCTIONS =================
 
   // logIn = () => {
   //
@@ -99,6 +94,5 @@ export default App;
   // getToken(jwt) {
   //   return localStorage.getItem('jwt')
   // }
-
-  <Route exact path="/dashboard" render={() => Object.keys(this.state.user).length !== 0 ? <Dashboard user={this.state.user} /> : null} />
-  // */}
+  //
+  // <Route exact path="/dashboard" render={() => Object.keys(this.state.user).length !== 0 ? <Dashboard user={this.state.user} /> : null} />

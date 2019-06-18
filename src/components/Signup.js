@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 // import {Link} from 'react-router-dom';
 
-const URL = 'http://localhost:5000/api/v1/'
 
 class Signup extends Component {
   // constructor() {
