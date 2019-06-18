@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Card, Icon } from 'semantic-ui-react'
 import Note from './Note'
 import NoteModal from '../modals/NoteModal';
-const URL = 'http://localhost:5000/api/v1/'
 
 
 class NoteBoard extends Component {

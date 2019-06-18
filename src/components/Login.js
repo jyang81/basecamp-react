@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { Button, Divider, Segment } from 'semantic-ui-react'
-const URL = 'http://localhost:5000/api/v1/'
+
 
 class Login extends Component {
   constructor(props) {
@@ -63,6 +63,8 @@ class Login extends Component {
     this.logIn()
   }
 
+// FIX VERTICAL SPACING ISSUE ON FORM
+
   render() {
     return (
       <div className="form">
@@ -101,7 +103,6 @@ class Login extends Component {
       </div>
     )
   }
-
 
 }
 

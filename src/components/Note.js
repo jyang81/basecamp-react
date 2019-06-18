@@ -3,35 +3,26 @@ import React, {Component} from 'react';
 import NoteItemModal from '../modals/NoteItemModal';
 
 
-
 class Note extends Component {
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //
-  //   }
+  // state = {
+  //   notes: []
   // }
-
-  createNoteItem = (ev) => {
-    console.log("new note item");
-  }
+  //
+  // componentWillMount(){
+  //   this.setState({
+  //     notes: this.props.category.notes
+  //   })
+  // }
 
   render() {
     return (
       <NoteItemModal
         user={this.props.user}
-        createNoteItem={this.createNoteItem}
         category={this.props.category}
-        />
-
+      />
     )
   }
 
 }
 
 export default Note;
-
-// <div
-//   className="post-it">
-//   <div>{this.props.category.title}</div>
-// </div>
