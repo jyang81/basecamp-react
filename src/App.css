@@ -63,7 +63,7 @@
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 }
 
-.post-it:before, .post-it:after {
+/* .post-it:before, .post-it:after {
 	position: absolute;
 	width: 40%;
 	height: 10px;
@@ -90,7 +90,7 @@
 	-ms-transform: skew(5deg) rotate(5deg);
 	-o-transform: skew(5deg) rotate(5deg);
 	transform: skew(5deg) rotate(5deg);
-}
+} */
 
 /**** TO DO LIST ****/
 

@@ -11,8 +11,6 @@ class ToDoModal extends Component {
     this.setState({ open: false })
   }
 
-
-
   handleSubmit = (ev) => {
     ev.preventDefault()
     this.props.createToDo(ev)
