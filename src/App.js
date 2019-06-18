@@ -33,7 +33,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <div>BaseCamp</div>
+        <div className="header-bar">BaseCamp</div>
         <Router>
           <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
           <Route exact path="/signup" render={() => <Signup
