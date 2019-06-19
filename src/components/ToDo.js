@@ -60,7 +60,7 @@ class ToDo extends Component {
             <Card.Header>To Dos <Icon inverted color='orange' name='check square outline' />
             </Card.Header>
           </Card.Content>
-            <div className="list">
+            <div className="list-container">
             {this.state.to_dos.map(to_do => {
               return (
                 <ToDoItem key={to_do.id} to_do={to_do} deleteToDo={this.deleteToDo}/>

@@ -76,34 +76,9 @@
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 }
 
-/* .post-it:before, .post-it:after {
-	position: absolute;
-	width: 40%;
-	height: 10px;
-	content: ' ';
-	left: 12px;
-	bottom: 12px;
-	background: transparent;
-	-webkit-transform: skew(-5deg) rotate(-5deg);
-	-moz-transform: skew(-5deg) rotate(-5deg);
-	-ms-transform: skew(-5deg) rotate(-5deg);
-	-o-transform: skew(-5deg) rotate(-5deg);
-	transform: skew(-5deg) rotate(-5deg);
-	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-	z-index: -1;
+.post-it-modal {
+  background-color: #FFFF99 !important;
 }
-
-.post-it:after {
-	left: auto;
-	right: 12px;
-	-webkit-transform: skew(5deg) rotate(5deg);
-	-moz-transform: skew(5deg) rotate(5deg);
-	-ms-transform: skew(5deg) rotate(5deg);
-	-o-transform: skew(5deg) rotate(5deg);
-	transform: skew(5deg) rotate(5deg);
-} */
 
 /**** TO DO LIST ****/
 
@@ -167,7 +142,7 @@
 
 /* CONTAINER FOR TODOs and Notes */
 
-.list {
+.list-container {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -177,7 +152,7 @@
 
 /* LOGIN and SIGNUP */
 
-.form {
+.form-container {
   max-width: 40vw;
   margin: auto;
 }

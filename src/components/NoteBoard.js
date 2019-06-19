@@ -47,7 +47,7 @@ class NoteBoard extends Component {
             <Card.Header>Notes <Icon inverted color='olive' name='sticky note' />
             </Card.Header>
           </Card.Content>
-            <div className='list'>
+            <div className='list-container'>
             {this.state.note_categories.map(category => {
               return (
                 <Note key={category.id} category={category} />

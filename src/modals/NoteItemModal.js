@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react'
+import { Button, Header, Icon, Modal, Form, List } from 'semantic-ui-react'
 
 class NoteItemModal extends Component {
   state = {
@@ -21,7 +21,6 @@ class NoteItemModal extends Component {
     ev.preventDefault()
     this.createNoteItem(ev)
     ev.target.reset()
-    console.log("NOTE", ev.target.elements["content"].value)
   }
 
   createNoteItem = (ev) => {
@@ -47,6 +46,20 @@ class NoteItemModal extends Component {
     .catch(error => console.error(error))
   }
 
+  deleteNote = (id) => {
+    console.log("Delete Note");
+    // fetch(`${URL}notes/${id}`, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     'Authorization': 'Bearer ' + localStorage.jwt
+    //   }
+    // })
+    // .then(res => res.text())
+    // .then(this.setState({
+    //   to_dos: this.state.to_dos.filter(to_do => to_do.id !== id)
+    // }))
+  }
+
   render() {
     const {open} = this.state
     return (
@@ -58,17 +71,25 @@ class NoteItemModal extends Component {
           onClick={() => this.setState({ open: true })}>
          {this.props.category.title}</div>}
         closeIcon >
-        <Header icon='pin' content={this.props.category.title} />
-        <Modal.Content scrolling>
-          <ul>
+        <Header className='post-it-modal' icon='pin' content={this.props.category.title} />
+        <Modal.Content className='post-it-modal' scrolling>
+          <List divided relaxed verticalAlign='middle'>
             {this.state.notes.map(note => {
               return (
-                <li key={note.id}>{note.content}</li>
+                <List.Item key={note.id}>
+                  <List.Content floated='right'>
+                    <Icon link name='close' inverted color='grey' onClick={this.deleteNote} />
+                  </List.Content>
+                  <Icon size='small' name='square' />
+                  <List.Content >
+                    <List.Header>{note.content}</List.Header>
+                  </List.Content>
+                </List.Item>
               )
             })}
-          </ul>
+          </List>
         </Modal.Content>
-        <Modal.Content>
+        <Modal.Content className='post-it-modal'>
           <Form onSubmit={this.handleSubmit}>
             <Form.Field>
               <label>Note</label>

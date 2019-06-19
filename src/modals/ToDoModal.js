@@ -14,9 +14,6 @@ class ToDoModal extends Component {
     ev.preventDefault()
     this.props.createToDo(ev)
     this.closeModal()
-    console.log("ITEM", ev.target.elements["todoitem"].value)
-    console.log("CAT", ev.target.elements["category"].value)
-    console.log("DUE", ev.target.elements["due_date"].value)
   }
 
   render() {
@@ -28,7 +25,7 @@ class ToDoModal extends Component {
         trigger={<Button onClick={() => this.setState({ open: true })}>
         <Icon name='plus square' /> Add New To Do Item</Button>}
         closeIcon >
-        <Header icon='list' content='Create a To Do' />
+        <Header icon='tasks' content='Create a To Do' />
         <Modal.Content>
 
         <Form onSubmit={this.handleSubmit}>
