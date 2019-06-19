@@ -170,6 +170,14 @@
 /* LOGIN and SIGNUP */
 
 .form-container {
-  max-width: 40vw;
+  line-height: 2em;
   margin: auto;
+  min-width: 225px;
+  max-width: 30vw;
+}
+
+.form-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
