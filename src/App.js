@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Signup from './components/Signup';
+import Welcome from './components/Welcome';
 
 
 class App extends Component {
@@ -28,8 +29,11 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <div className="header-bar">BaseCamp</div>
+        <div className="welcome">
+          <h2>BaseCamp</h2>
+        </div>
         <Router>
+          <Route exact path="/" component={Welcome} />
           <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
           <Route exact path="/signup" render={() => <Signup
               setUser={this.setUser}
@@ -47,52 +51,7 @@ export default App;
 
 
 
-// ============= LOG IN FUNCTIONS =================
+// ============= OLD CODE =================
 
-  // logIn = () => {
-  //
-  //   let email = this.email.current.value
-  //   let password = this.password.current.value
-  //
-  //   fetch(URL + 'login', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({user: {email, password} })
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     if (data && data.jwt) {
-  //       this.saveToken(data.jwt)
-  //       this.getProfile()
-  //     } else {
-  //       const error = document.getElementById("error")
-  //       error.textContent = data.message
-  //     }
-  //   })
-  // }
-  //
-  // getProfile = () => {
-  //   let token = this.getToken()
-  //   fetch(URL + 'profile', {
-  //     headers: {
-  //       'Authorization': 'Bearer ' + token
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     this.setUser(data)
-  //   })
-  // }
-  //
-  //
-  // saveToken(jwt) {
-  //   localStorage.setItem('jwt', jwt)
-  // }
-  //
-  // getToken(jwt) {
-  //   return localStorage.getItem('jwt')
-  // }
-  //
+
   // <Route exact path="/dashboard" render={() => Object.keys(this.state.user).length !== 0 ? <Dashboard user={this.state.user} /> : null} />

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Progress } from 'semantic-ui-react'
 import moment from 'moment'
 
 class Timer extends Component {
@@ -29,8 +29,12 @@ class Timer extends Component {
       <Card fluid className="fullsize">
         <Card.Content>
           <Card.Header>Days Till Graduation <Icon inverted color='blue' name='graduation cap' /></Card.Header>
-        <Card.Description className="counter">{this.getTimeRemaining(this.props.user.end_date)}
+        <Card.Description className="counter">
+          {this.getTimeRemaining(this.props.user.end_date)}
         </Card.Description>
+      </Card.Content>
+      <Card.Content className="small-height">
+        <Progress percent={95} color='blue' progress />
       </Card.Content>
         <Card.Content className="spread" extra>
           <span className="left"><Icon name='calendar' /> Start: {moment(this.props.user.start_date).format('MMM D')}</span>
