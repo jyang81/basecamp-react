@@ -47,17 +47,17 @@ class NoteItemModal extends Component {
   }
 
   deleteNote = (id) => {
-    console.log("Delete Note");
-    // fetch(`${URL}notes/${id}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Authorization': 'Bearer ' + localStorage.jwt
-    //   }
-    // })
-    // .then(res => res.text())
-    // .then(this.setState({
-    //   to_dos: this.state.to_dos.filter(to_do => to_do.id !== id)
-    // }))
+    console.log("Delete Note", id);
+    fetch(`${URL}notes/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.jwt
+      }
+    })
+    .then(res => res.text())
+    .then(this.setState({
+      notes: this.state.notes.filter(note => note.id !== id)
+    }))
   }
 
   render() {
@@ -78,7 +78,7 @@ class NoteItemModal extends Component {
               return (
                 <List.Item key={note.id}>
                   <List.Content floated='right'>
-                    <Icon link name='close' inverted color='grey' onClick={this.deleteNote} />
+                    <Icon link name='close' inverted color='grey' onClick={() => {this.deleteNote(note.id)}} />
                   </List.Content>
                   <Icon size='small' name='square' />
                   <List.Content >
