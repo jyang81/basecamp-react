@@ -19,6 +19,7 @@ class Note extends Component {
       <NoteItemModal
         user={this.props.user}
         category={this.props.category}
+        deleteSticky={this.props.deleteSticky}
       />
     )
   }

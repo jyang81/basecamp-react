@@ -47,17 +47,16 @@ class NoteItemModal extends Component {
   }
 
   deleteNote = (id) => {
-    console.log("Delete Note");
-    // fetch(`${URL}notes/${id}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Authorization': 'Bearer ' + localStorage.jwt
-    //   }
-    // })
-    // .then(res => res.text())
-    // .then(this.setState({
-    //   to_dos: this.state.to_dos.filter(to_do => to_do.id !== id)
-    // }))
+    fetch(`${URL}notes/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.jwt
+      }
+    })
+    .then(res => res.text())
+    .then(this.setState({
+      notes: this.state.notes.filter(note => note.id !== id)
+    }))
   }
 
   render() {
@@ -71,14 +70,14 @@ class NoteItemModal extends Component {
           onClick={() => this.setState({ open: true })}>
          {this.props.category.title}</div>}
         closeIcon >
-        <Header className='post-it-modal' icon='pin' content={this.props.category.title} />
-        <Modal.Content className='post-it-modal' scrolling>
+        <Header className='yellow-bg' icon='pin' content={this.props.category.title} />
+        <Modal.Content className='yellow-bg' scrolling>
           <List divided relaxed verticalAlign='middle'>
             {this.state.notes.map(note => {
               return (
                 <List.Item key={note.id}>
                   <List.Content floated='right'>
-                    <Icon link name='close' inverted color='grey' onClick={this.deleteNote} />
+                    <Icon link name='close' inverted color='grey' onClick={() => {this.deleteNote(note.id)}} />
                   </List.Content>
                   <Icon size='small' name='square' />
                   <List.Content >
@@ -89,7 +88,7 @@ class NoteItemModal extends Component {
             })}
           </List>
         </Modal.Content>
-        <Modal.Content className='post-it-modal'>
+        <Modal.Content className='yellow-bg'>
           <Form onSubmit={this.handleSubmit}>
             <Form.Field>
               <label>Note</label>
@@ -100,6 +99,11 @@ class NoteItemModal extends Component {
             </Button>
           </Form>
         </Modal.Content>
+        <Modal.Actions className='yellow-bg'>
+          <Button color='red' onClick={() => {this.props.deleteSticky(this.props.category.id)}}>
+            <Icon name='remove' /> Delete Sticky
+          </Button>
+        </Modal.Actions>
       </Modal>
     )
   }
