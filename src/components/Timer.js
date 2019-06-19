@@ -21,7 +21,7 @@ class Timer extends Component {
   //   a.diff(b, 'days')
   // }
 
-
+// write function to get percentage of course finished
 
   render() {
     return (

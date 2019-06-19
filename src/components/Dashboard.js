@@ -9,21 +9,13 @@ import NoteBoard from './NoteBoard';
 
 
 class Dashboard extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     loggedIn: true
-  //   }
-  // }
-
-
 
   render() {
     console.log("Dashboard User:", this.props.user)
     return (
       <div className="App">
         <div className="parent">
-          <Header user={this.props.user} />
+          <Header user={this.props.user} logOut={this.props.logOut} />
           <Timer user={this.props.user} />
           <Mood user={this.props.user} />
           <ToDo user={this.props.user} />
