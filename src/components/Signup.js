@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 class Signup extends Component {
@@ -30,13 +30,15 @@ class Signup extends Component {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("1. created:", data.user)
+      console.log("1. created:", data)
       if (data && data.jwt) {
         this.saveToken(data.jwt)
         this.getProfile()
+      } else {
+        const error = document.getElementById("error")
+        error.textContent = data.exception
       }
     })
-    .catch(error => console.error(error))
   }
 
   getProfile = () => {
@@ -106,8 +108,10 @@ class Signup extends Component {
             Start <input type="date" name="start_date" placeholder="Start Date" /><br/>
           End <input type="date" name="end_date" placeholder="End Date" />
           </div>
+          <div id="error"></div>
           <input type="submit" value="Sign up" />
         </form>
+        <Link to="/login">Back to Log In</Link>
       </div>
     )
   }

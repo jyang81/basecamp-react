@@ -22,16 +22,14 @@ class Dashboard extends Component {
     console.log("Dashboard User:", this.props.user)
     return (
       <div className="App">
-      <Header user={this.props.user} />
-      <div className="parent">
-        <Timer user={this.props.user} />
-        <Mood user={this.props.user} />
-        <ToDo user={this.props.user} />
-        <NoteBoard user={this.props.user} />
-        <Help />
-
-
-      </div>
+        <div className="parent">
+          <Header user={this.props.user} />
+          <Timer user={this.props.user} />
+          <Mood user={this.props.user} />
+          <ToDo user={this.props.user} />
+          <NoteBoard user={this.props.user} />
+          <Help />
+        </div>
       </div>
     )
   }

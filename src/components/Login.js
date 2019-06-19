@@ -94,11 +94,11 @@ class Login extends Component {
             </div>
              <button type="submit" className="ui primary button">Login</button>
           </form>
-          <div id="error"></div>
           <Divider horizontal>Or</Divider>
             <br/>
             <Link to="/signup"><Button content='Sign up' icon='signup' size='big' /></Link>
             <br/>
+            <div id="error"></div>
       </Segment>
       </div>
     )
