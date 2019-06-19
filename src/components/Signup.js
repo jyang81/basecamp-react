@@ -64,7 +64,7 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.createUser}>
+        <form className='form-container' onSubmit={this.createUser}>
           <div>
             <label htmlFor="name">Name</label><br />
             <input type="text" name="name" placeholder="Enter your name" />

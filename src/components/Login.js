@@ -67,7 +67,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="form">
+      <div className="form-container">
       <Segment placeholder>
           <form onSubmit={this.handleSubmit} className="ui form">
             <div className="field">
