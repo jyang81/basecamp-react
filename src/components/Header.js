@@ -1,20 +1,10 @@
-import React, {Component} from 'react';
-import { Image } from 'semantic-ui-react'
+import React from 'react';
+import { Dropdown, Image } from 'semantic-ui-react'
 
-class Header extends Component {
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //
-  //   }
-  // }
+const Header = (props) => {
 
-  logOut() {
-    localStorage.removeItem('jwt')
-  }
-
-  schoolLogo = (school) => {
-    switch (this.props.user.school) {
+  function schoolLogo(school) {
+    switch (props.user.school) {
       case 'Flatiron School':
         return './images/fis.png'
       case 'Code Fellows':
@@ -28,15 +18,25 @@ class Header extends Component {
     }
   }
 
-  render() {
+  const trigger = (
+    <span>
+      <i className="small circular inverted red user icon"></i> {props.user.name}
+    </span>
+  )
+
+  const options = [
+    { key: 'user', text: 'Edit Profile', icon: 'user' },
+    { key: 'sign-out', text: 'Log Out', icon: 'sign out', onClick: props.logOut }
+  ]
+
     return (
       <div className="div6">
         <div>BaseCamp logo</div>
-        <div><Image src={this.schoolLogo(this.props.user.school)} avatar /> {this.props.user.school}: {this.props.user.course.name}</div>
-        <div><i className="user circle icon"></i> {this.props.user.name}</div>
+        <div><Image src={schoolLogo(props.user.school)} avatar /> {props.user.school}: {props.user.course.name}</div>
+        <div><Dropdown trigger={trigger} options={options} pointing='top right' icon={null} /></div>
       </div>
     )
-  }
+
 
 }
 

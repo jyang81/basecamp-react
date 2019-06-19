@@ -23,9 +23,17 @@ class App extends Component {
     }, () => {console.log('3. set user', this.state)}
     )}
 
+  logOut = () => {
+    localStorage.removeItem('jwt')
+    this.setState({
+      loggedIn: false,
+      user: {}
+    })
+  }
+
   render() {
     if (this.state.loggedIn === true && Object.keys(this.state.user).length !== 0) {
-      return <Dashboard user={this.state.user} />
+      return <Dashboard user={this.state.user} logOut={this.logOut} />
     }
     return (
       <div className="App">
