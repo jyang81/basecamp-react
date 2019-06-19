@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Button, Header, Icon, Modal, Form, List } from 'semantic-ui-react'
+import { Button, Header, Icon, Modal, Form, List, Confirm } from 'semantic-ui-react'
 
 class NoteItemModal extends Component {
   state = {
     open: false,
+    showConfirm: false,
     notes: []
   }
 
@@ -59,6 +60,15 @@ class NoteItemModal extends Component {
     }))
   }
 
+// ====== Confirm actions ===========
+
+  show = () => this.setState({ showConfirm: true })
+  handleConfirm = () => {
+    this.props.deleteSticky(this.props.category.id)
+    this.setState({ showConfirm: false })
+  }
+  handleCancel = () => this.setState({ showConfirm: false })
+
   render() {
     const {open} = this.state
     return (
@@ -91,18 +101,25 @@ class NoteItemModal extends Component {
         <Modal.Content className='yellow-bg'>
           <Form onSubmit={this.handleSubmit}>
             <Form.Field>
-              <label>Note</label>
+              <label>Note Item</label>
               <input name="content" placeholder='Thoughts, Ideas, Links, etc.' />
             </Form.Field>
             <Button color='blue' type='submit'>
-              <Icon name='plus' /> Add Note
+              <Icon name='plus' /> Add Note Item
             </Button>
           </Form>
         </Modal.Content>
         <Modal.Actions className='yellow-bg'>
-          <Button color='red' onClick={() => {this.props.deleteSticky(this.props.category.id)}}>
-            <Icon name='remove' /> Delete Sticky
+          <Button color='red' onClick={this.show}>
+            <Icon name='remove' /> Delete Note
           </Button>
+          <Confirm
+            open={this.state.showConfirm}
+            content='Are you sure you want to delete this note?'
+            onCancel={this.handleCancel}
+            onConfirm={this.handleConfirm}
+            size='tiny'
+          />
         </Modal.Actions>
       </Modal>
     )
