@@ -39,6 +39,19 @@ class NoteBoard extends Component {
     .catch(error => console.error(error))
   }
 
+  deleteSticky = (id) => {
+    fetch(`${URL}note_categories/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.jwt
+      }
+    })
+    .then(res => res.text())
+    .then(this.setState({
+      note_categories: this.state.note_categories.filter(note_category => note_category.id !== id)
+    }))
+  }
+
   render() {
     return (
       <div className="div5" >
@@ -50,7 +63,11 @@ class NoteBoard extends Component {
             <div className='list-container'>
             {this.state.note_categories.map(category => {
               return (
-                <Note key={category.id} category={category} />
+                <Note
+                  key={category.id}
+                  category={category}
+                  deleteSticky={this.deleteSticky}
+                />
               )
             })}
             </div>
