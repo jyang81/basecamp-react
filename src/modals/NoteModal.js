@@ -7,7 +7,6 @@ class NoteModal extends Component {
   }
 
   closeModal = () => {
-    console.log("close modal")
     this.setState({ open: false })
   }
 
@@ -15,7 +14,6 @@ class NoteModal extends Component {
     ev.preventDefault()
     this.props.createNote(ev)
     this.closeModal()
-    console.log("TITLE", ev.target.elements["title"].value)
   }
 
   render() {
