@@ -19,16 +19,16 @@ class Mood extends Component {
         <div className='content'>
           <select className="ui dropdown">
             <option value="">Mood</option>
-            <option value="10">10 - I know everything!</option>
-            <option value="9">9 - Doing awesome</option>
-            <option value="8">8 - All caught up</option>
-            <option value="7">7 - 7</option>
-            <option value="6">6 - 6</option>
-            <option value="5">5 - Keeping up (this is the bar)</option>
-            <option value="4">4 - 4</option>
-            <option value="3">3 - 3</option>
-            <option value="2">2 - Panic mode</option>
-            <option value="1">1 - I know nothing!</option>
+            <option value="10">10 - I should be teaching!</option>
+            <option value="9">9 - Relax Day</option>
+            <option value="8">8 - Learning is fun!</option>
+            <option value="7">7 - Comfortable- All caught up</option>
+            <option value="6">6 - Just barely keeping up</option>
+            <option value="5">5 - Playing catch up</option>
+            <option value="4">4 - I have so much to do!</option>
+            <option value="3">3 - Stressed out, but not panicking</option>
+            <option value="2">2 - Starting to panic!</option>
+            <option value="1">1 - What am I doing here?!</option>
           </select>
          </div>
         <Card.Content extra>
