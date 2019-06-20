@@ -37,7 +37,7 @@ const Header = (props) => {
     return (
       <div className="div6">
         <div><Image src='./images/bc-logo-horz.svg' alt='BaseCamp logo' /></div>
-        <div><Image src={schoolLogo(props.user.school)} avatar /> {props.user.school}: {props.user.course.name}</div>
+        <div><Image src={schoolLogo(props.user.school)} avatar /> {props.user.course.name} @ {props.user.school}</div>
         <div><Dropdown trigger={trigger} options={options} pointing='top right' icon={null} /></div>
       </div>
     )
