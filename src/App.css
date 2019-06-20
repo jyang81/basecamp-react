@@ -176,8 +176,24 @@
   max-width: 30vw;
 }
 
+.form-container-2 {
+  text-align: left;
+  margin: auto;
+  max-width: 40vw;
+  margin-bottom: 6vh;
+}
+
 .form-2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.formMargin {
+  margin: 1.5em;
+}
+
+.centered {
+  text-align: center;
+  margin-top: 2em;
 }

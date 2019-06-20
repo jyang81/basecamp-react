@@ -1,16 +1,39 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import { Segment, Dropdown } from 'semantic-ui-react'
 
+const schoolOptions = [
+  {
+    key: "Flatiron School",
+    text: "Flatiron School",
+    value: "Flatiron School",
+    image: { avatar: true, src: './images/fis.png' },
+  },
+  {
+    key: "Code Fellows",
+    text: "Code Fellows",
+    value: "Code Fellows",
+    image: { avatar: true, src: './images/cf.png' },
+  },
+  {
+    key: "General Assembly",
+    text: "General Assembly",
+    value: "General Assembly",
+    image: { avatar: true, src: './images/ga.png' },
+  },
+  {
+    key: "Galvanize",
+    text: "Galvanize",
+    value: "Galvanize",
+    image: { avatar: true, src: './images/gv.jpg' },
+  }
+]
 
 class Signup extends Component {
-  // constructor() {
-  //   super()
-  //
-  // }
 
   createUser = (ev) => {
     ev.preventDefault()
-
+    console.log("school", ev.target.elements.school.value)
     fetch(URL + 'users', {
       method: 'POST',
       headers: {
@@ -65,53 +88,68 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <form className='form-container' onSubmit={this.createUser}>
-          <div>
-            <label htmlFor="name">Name</label><br />
-            <input type="text" name="name" placeholder="Enter your name" />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label><br />
-            <input type="text" name="email" placeholder="Enter your email" ref={this.props.email} />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label><br />
-            <input type="password" name="password" placeholder="Password" ref={this.props.password} />
-          </div>
-          <div>
-            <label htmlFor="password_confirmation">Confirm Password</label><br />
-            <input type="password" name="password_confirmation" placeholder="Re-enter Password" />
-          </div>
-          <div>
-            <label htmlFor="school">School</label><br />
-            <select name="school">
-              <option>Select your school</option>
-              <option value="Flatiron School">Flatiron School</option>
-              <option value="Code Fellows">Code Fellows</option>
-              <option value="General Assembly">General Assembly</option>
-              <option value="Galvanize">Galvanize</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="course">Course</label><br />
-            <select name="course_id">
-              <option>Select your course</option>
-              <option value="1">Software Engineering Immersive</option>
-              <option value="2">Software Engineering Online</option>
-              <option value="3">Data Science</option>
-              <option value="4">UX/UI Design</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="dates">Dates</label><br />
-            Start <input type="date" name="start_date" placeholder="Start Date" /><br/>
-          End <input type="date" name="end_date" placeholder="End Date" />
-          </div>
-          <div id="error"></div>
-          <input type="submit" value="Sign up" />
-        </form>
-        <Link to="/login">Back to Log In</Link>
+      <div className="form-container-2">
+        <Segment>
+            <form className="ui form formMargin" onSubmit={this.createUser}>
+              <div className="required field">
+                <label>Name</label>
+                <input className="ui input" type="text" name="name" placeholder="Enter your name" />
+              </div>
+              <div className="required field">
+                <label>Email</label>
+                <input className="ui input" type="text" name="email" placeholder="Enter your email" ref={this.props.email} />
+              </div>
+              <div className="required field">
+                <label>Password</label>
+                <input className="ui input" type="password" name="password" placeholder="Password" ref={this.props.password} />
+              </div>
+              <div className="required field">
+                <label>Confirm Password</label>
+                <input className="ui input" type="password" name="password_confirmation" placeholder="Re-enter Password" />
+              </div>
+              <div className="required field">
+                <label>School</label>
+                <input type='hidden' name="school" value="" />
+                <Dropdown
+                  placeholder='Select your school'
+                  fluid
+                  selection
+                  options={schoolOptions}
+                />
+              </div>
+              <div className="required field">
+                <label>Course</label>
+                <select name="course_id">
+                  <option>Select your course</option>
+                  <option value="1">Software Engineering Immersive</option>
+                  <option value="2">Software Engineering Online</option>
+                  <option value="3">Data Science</option>
+                  <option value="4">UX/UI Design</option>
+                </select>
+              </div>
+              <div className="required field">
+                <label>Start Date</label>
+                  <div className="ui calendar">
+                    <div className="ui input left icon">
+                      <i className="calendar alternate icon"></i>
+                      <input type="date" name="start_date" />
+                    </div>
+                  </div>
+              </div>
+              <div className="required field">
+                <label>End Date</label>
+                  <div className="ui calendar">
+                    <div className="ui input left icon">
+                      <i className="calendar alternate icon"></i>
+                      <input type="date" name="end_date" />
+                    </div>
+                  </div>
+              </div><br/>
+              <div id="error"></div>
+              <div className="centered"><button type="submit" className="ui primary button">Sign Up</button></div>
+            </form>
+            <div className="centered"><Link to="/login">Back to Log In</Link></div>
+        </Segment>
       </div>
     )
   }
@@ -120,3 +158,18 @@ class Signup extends Component {
 }
 
 export default Signup;
+
+
+// ==== OLD CODE =====
+
+// <label>School</label>
+// <select className="ui selection dropdown" name="school">
+//   <option>Select your school</option>
+//   <option value="Flatiron School">Flatiron School</option>
+//   <option value="Code Fellows">Code Fellows</option>
+//   <option value="General Assembly">General Assembly</option>
+//   <option value="Galvanize">Galvanize</option>
+// </select>
+
+// <div className='inline field'>Start <input type="date" name="start_date" /></div>
+// <div className='inline field'>End <input type="date" name="end_date" placeholder="End Date" /></div>

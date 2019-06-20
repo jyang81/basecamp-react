@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import { Button, Divider, Form, Segment } from 'semantic-ui-react'
+import { Button, Divider, Segment } from 'semantic-ui-react'
 
 
 class Login extends Component {
@@ -99,7 +99,7 @@ class Login extends Component {
           </form>
           <div id="error"></div>
         <Divider horizontal > OR </Divider>
-          <Link to="/signup"><Button content='Sign up for an account' icon='signup' /></Link>
+          <Link className="formMargin" to="/signup"><Button content='Sign up for an account' icon='signup' /></Link>
         </Segment>
       </div>
     )
