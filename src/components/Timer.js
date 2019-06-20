@@ -35,7 +35,7 @@ class Timer extends Component {
       <div className="div1">
       <Card fluid className="fullsize">
         <Card.Content>
-          <Card.Header>Days Till Graduation <Icon inverted color='blue' name='graduation cap' /></Card.Header>
+          <Card.Header><Icon inverted color='blue' name='graduation cap' />&ensp;Days Left&emsp;<Icon inverted color='blue' name='graduation cap' /></Card.Header>
         <Card.Description className="counter">
           {this.getTimeRemaining(this.props.user.end_date)}
         </Card.Description>

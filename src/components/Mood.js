@@ -15,10 +15,11 @@ class Mood extends Component {
     return (
       <div className="div2">
       <Card fluid className="fullsize">
-        <Card.Content header='Today I feel:' />
+        <Card.Content header='Daily Mood' />
+        <Card.Content className="no-top-line">
         <div className='content'>
           <select className="ui dropdown">
-            <option value="">Mood</option>
+            <option value="">Select Your Mood</option>
             <option value="10">10 - I should be teaching!</option>
             <option value="9">9 - Relax Day</option>
             <option value="8">8 - Learning is fun!</option>
@@ -31,9 +32,10 @@ class Mood extends Component {
             <option value="1">1 - What am I doing here?!</option>
           </select>
          </div>
+       </Card.Content>
         <Card.Content extra>
           <Icon name='smile' />
-          Select your mood
+          How do you feel today?
         </Card.Content>
       </Card>
       </div>
