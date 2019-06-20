@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 import { Button, Header, Icon, Modal, Form, List, Confirm } from 'semantic-ui-react'
 
+// THIS IS NOT WORKING YET
+
 class ProfileModal extends Component {
   state = {
     open: false,
     showConfirm: false,
-    notes: []
   }
 
-  componentWillMount(){
-    this.setState({
-      notes: this.props.category.notes
-    })
-  }
 
   closeModal = () => {
     this.setState({ open: false })
@@ -20,35 +16,42 @@ class ProfileModal extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    this.createNoteItem(ev)
+    this.updateUser(ev)
     ev.target.reset()
   }
 
-  createNoteItem = (ev) => {
-    fetch(URL + 'notes', {
-      method: 'POST',
+  updateUser = (ev, user, id) => {
+    ev.preventDefault()
+    fetch(`${URL}users/${id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.jwt
+        'Accept': 'application/json'
       },
-      body: JSON.stringify({note: {
-        content: ev.target.elements["content"].value,
-        note_category_id: this.props.category.id
-      }})
+      body: JSON.stringify(user)
     })
     .then(res => res.json())
-    .then(note => {
-      console.log("created note:", note)
-      this.setState({
-        notes: [...this.state.notes, note]
-      })
+    .then(data => {
+      console.log("1. updated:", data)
     })
-    .catch(error => console.error(error))
   }
 
-  deleteNote = (id) => {
-    fetch(`${URL}notes/${id}`, {
+  getProfile = () => {
+    let token = this.getToken()
+    fetch(URL + 'profile', {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("2. get profile:", data.user)
+      this.props.setUser(data)
+    })
+  }
+
+  deleteUser = (id) => {
+    fetch(`${URL}users/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': 'Bearer ' + localStorage.jwt
@@ -56,7 +59,7 @@ class ProfileModal extends Component {
     })
     .then(res => res.text())
     .then(this.setState({
-      notes: this.state.notes.filter(note => note.id !== id)
+      user: {}
     }))
   }
 
@@ -76,8 +79,7 @@ class ProfileModal extends Component {
         onClose={this.closeModal}
         open={open}
         trigger={<div
-          className="post-it"
-          onClick={() => this.setState({ open: true })}>
+          onClick={() => this.props.openModal}>
          {this.props.category.title}</div>}
         closeIcon >
         <Header className='yellow-bg' icon='pin' content={this.props.category.title} />
@@ -87,7 +89,7 @@ class ProfileModal extends Component {
               return (
                 <List.Item key={note.id}>
                   <List.Content floated='right'>
-                    <Icon link name='close' inverted color='grey' onClick={() => {this.deleteNote(note.id)}} />
+                    <Icon link name='close' inverted color='grey' onClick={() => {this.deleteUser(note.id)}} />
                   </List.Content>
                   <Icon size='small' name='square' />
                   <List.Content >
