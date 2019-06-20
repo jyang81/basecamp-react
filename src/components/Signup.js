@@ -29,11 +29,42 @@ const schoolOptions = [
   }
 ]
 
+const courseOptions = [
+  {
+    key: "Software Engineering Immersive",
+    text: "Software Engineering Immersive",
+    value: 1,
+    icon: 'laptop',
+  },
+  {
+    key: "Software Engineering Online",
+    text: "Software Engineering Online",
+    value: 2,
+    icon: 'laptop',
+  },
+  {
+    key: "Data Science",
+    text: "Data Science",
+    value: 3,
+    icon: 'lab',
+  },
+  {
+    key: "UX/UI Design",
+    text: "UX/UI Design",
+    value: 4,
+    icon: 'sitemap',
+  }
+]
+
 class Signup extends Component {
+
+  state = {
+    school: "",
+    course: null
+  }
 
   createUser = (ev) => {
     ev.preventDefault()
-    console.log("school", ev.target.elements.school.value)
     fetch(URL + 'users', {
       method: 'POST',
       headers: {
@@ -45,8 +76,8 @@ class Signup extends Component {
         email: ev.target.elements.email.value,
         password: ev.target.elements.password.value,
         password_confirmation: ev.target.elements.password_confirmation.value,
-        school: ev.target.elements.school.value,
-        course_id: ev.target.elements.course_id.value,
+        school: this.state.school,
+        course_id: this.state.course,
         start_date: ev.target.elements.start_date.value,
         end_date: ev.target.elements.end_date.value
       }})
@@ -86,6 +117,27 @@ class Signup extends Component {
     return localStorage.getItem('jwt')
   }
 
+  courseId = (course) => {
+    switch (course) {
+      case "Software Engineering Immersive":
+        return 1
+      case "Software Engineering Online":
+        return 2
+      case "Data Science":
+        return 3
+      case "UX/UI Design":
+        return 4
+      default:
+        return 1
+    }
+  }
+
+  handleChange = (course) => {
+    this.setState({
+      course: this.courseId(course)
+    })
+  }
+
   render() {
     return (
       <div className="form-container-2">
@@ -109,23 +161,26 @@ class Signup extends Component {
               </div>
               <div className="required field">
                 <label>School</label>
-                <input type='hidden' name="school" value="" />
                 <Dropdown
                   placeholder='Select your school'
                   fluid
                   selection
                   options={schoolOptions}
+                  onChange={(ev) => {this.setState({
+                    school: ev.target.textContent
+                    })
+                  }}
                 />
               </div>
               <div className="required field">
                 <label>Course</label>
-                <select name="course_id">
-                  <option>Select your course</option>
-                  <option value="1">Software Engineering Immersive</option>
-                  <option value="2">Software Engineering Online</option>
-                  <option value="3">Data Science</option>
-                  <option value="4">UX/UI Design</option>
-                </select>
+                <Dropdown
+                  placeholder='Select your course'
+                  fluid
+                  selection
+                  options={courseOptions}
+                  onChange={(ev) => {this.handleChange(ev.target.textContent)}}
+                />
               </div>
               <div className="required field">
                 <label>Start Date</label>
@@ -173,3 +228,13 @@ export default Signup;
 
 // <div className='inline field'>Start <input type="date" name="start_date" /></div>
 // <div className='inline field'>End <input type="date" name="end_date" placeholder="End Date" /></div>
+// <div className="required field">
+//   <label>Course</label>
+//   <select name="course_id">
+//     <option>Select your course</option>
+//     <option value="1">Software Engineering Immersive</option>
+//     <option value="2">Software Engineering Online</option>
+//     <option value="3">Data Science</option>
+//     <option value="4">UX/UI Design</option>
+//   </select>
+// </div>

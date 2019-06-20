@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dropdown, Image } from 'semantic-ui-react'
+import ProfileModal from '../modals/ProfileModal'
 
 const Header = (props) => {
 
@@ -23,6 +24,10 @@ const Header = (props) => {
       <i className="small circular inverted red user icon"></i> {props.user.name}
     </span>
   )
+
+  function openModal() {
+    // {() => this.setState({ open: true })}
+  }
 
   const options = [
     { key: 'user', text: 'Edit Profile', icon: 'user' },
