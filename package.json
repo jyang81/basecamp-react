@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nivo/calendar": "^0.59.0",
     "gulp": "^4.0.2",
     "moment": "^2.24.0",
     "react": "^16.8.6",

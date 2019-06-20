@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Modal, Form } from 'semantic-ui-react'
+import { Image, Modal } from 'semantic-ui-react'
 
 class HelpModal extends Component {
   state = {
