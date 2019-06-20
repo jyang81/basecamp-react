@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import { withRouter } from 'react-router';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="welcome">
-          <h2>BaseCamp</h2>
+          <div><Link to="/"><img src='./images/bc-logo-horz.svg' alt='BaseCamp logo'/></Link></div>
         </div>
         <Router>
           <Route exact path="/" component={Welcome} />
