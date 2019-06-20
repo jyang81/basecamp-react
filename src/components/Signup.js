@@ -140,6 +140,8 @@ class Signup extends Component {
 
   render() {
     return (
+      <div>
+        <p className="logoFont">Sign up to get started!</p><br/>
       <div className="form-container-2">
         <Segment>
             <form className="ui form formMargin" onSubmit={this.createUser}>
@@ -153,7 +155,7 @@ class Signup extends Component {
               </div>
               <div className="required field">
                 <label>Password</label>
-                <input className="ui input" type="password" name="password" placeholder="Password" ref={this.props.password} />
+                <input className="ui input" type="password" name="password" placeholder="Enter Password" ref={this.props.password} />
               </div>
               <div className="required field">
                 <label>Confirm Password</label>
@@ -205,6 +207,7 @@ class Signup extends Component {
             </form>
             <div className="centered"><Link to="/login">Back to Log In</Link></div>
         </Segment>
+      </div>
       </div>
     )
   }

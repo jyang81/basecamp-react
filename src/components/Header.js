@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, Image } from 'semantic-ui-react'
-import ProfileModal from '../modals/ProfileModal'
+// import ProfileModal from '../modals/ProfileModal'
 
 const Header = (props) => {
 
@@ -25,9 +25,9 @@ const Header = (props) => {
     </span>
   )
 
-  function openModal() {
+  // function openModal() {
     // {() => this.setState({ open: true })}
-  }
+  // }
 
   const options = [
     { key: 'user', text: 'Edit Profile', icon: 'user' },
@@ -36,7 +36,7 @@ const Header = (props) => {
 
     return (
       <div className="div6">
-        <div>BaseCamp logo</div>
+        <div><Image src='./images/bc-logo-horz.svg' alt='BaseCamp logo' /></div>
         <div><Image src={schoolLogo(props.user.school)} avatar /> {props.user.school}: {props.user.course.name}</div>
         <div><Dropdown trigger={trigger} options={options} pointing='top right' icon={null} /></div>
       </div>

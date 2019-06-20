@@ -63,10 +63,10 @@ class Login extends Component {
     this.logIn()
   }
 
-// FIX VERTICAL SPACING ISSUE ON FORM
-
   render() {
     return (
+      <div>
+        <p className="logoFont">Please log in.</p><br/>
       <div className="form-container">
         <Segment placeholder>
           <form onSubmit={this.handleSubmit} className="ui form form-2">
@@ -101,6 +101,7 @@ class Login extends Component {
         <Divider horizontal > OR </Divider>
           <Link className="formMargin" to="/signup"><Button content='Sign up for an account' icon='signup' /></Link>
         </Segment>
+      </div>
       </div>
     )
   }
