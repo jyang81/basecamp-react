@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Modal, Form } from 'semantic-ui-react'
+import { Image, Modal } from 'semantic-ui-react'
 
 class HelpModal extends Component {
   state = {
@@ -16,7 +16,7 @@ class HelpModal extends Component {
       <Modal basic size="small"
         onClose={this.closeModal}
         open={open}
-        trigger={<Image className="pointer" src='./images/help-button.svg' onClick={() => this.setState({ open: true })} />}
+        trigger={<Image className="helpbutton" src='./images/help-button.svg' onClick={() => this.setState({ open: true })} />}
       >
         <Modal.Content>
           <div className="center-all">
