@@ -162,6 +162,7 @@
 }
 /* ====HEADER==== */
 .div6 {
+  min-height: 4em;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
@@ -224,8 +225,15 @@
   /* line-height: 1em; */
 }
 
-.pointer {
+.helpbutton {
   cursor: pointer;
+}
+
+.helpbutton:hover {
+  filter: saturate(1.2);
+  /* IE6-9 */
+  -webkit-filter: saturate(1.2);
+  /* Google Chrome & Safari 6+ */
 }
 
 .no-top-line {
