@@ -239,3 +239,7 @@
 .no-top-line {
   border-top: none !important;
 }
+
+.moodchart {
+  max-height: 10rem;
+}
