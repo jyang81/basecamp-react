@@ -33,21 +33,19 @@ class Timer extends Component {
   render() {
     return (
       <div className="div1">
-      <Card fluid className="fullsize">
-        <Card.Content>
-          <Card.Header><Icon inverted color='blue' name='graduation cap' />&ensp;Days Left&emsp;<Icon inverted color='blue' name='graduation cap' /></Card.Header>
-        <Card.Description className="counter">
-          {this.getTimeRemaining(this.props.user.end_date)}
-        </Card.Description>
-      </Card.Content>
-      <Card.Content className="small-height">
-        <Progress percent={this.completedTime()} color='blue' progress />
-      </Card.Content>
-        <Card.Content className="spread" extra>
-          <span className="left"><Icon name='calendar' /> Start: {moment(this.props.user.start_date).format('MMM D')}</span>
-          <span className="right"><Icon name='calendar' /> End: {moment(this.props.user.end_date).format('MMM D')}</span>
-        </Card.Content>
-      </Card>
+        <Card fluid className="fullsize">
+          <Card.Content header='Days Left' />
+          <Card.Content className="no-top-line counter">
+            {this.getTimeRemaining(this.props.user.end_date)}
+          </Card.Content>
+          <Card.Content className="small-height">
+            <Progress percent={this.completedTime()} color='blue' progress />
+          </Card.Content>
+          <Card.Content className="spread" extra>
+            <span className="left"><Icon name='calendar' /> Start: {moment(this.props.user.start_date).format('MMM D')}</span>
+            <span className="right"><Icon name='calendar' /> End: {moment(this.props.user.end_date).format('MMM D')}</span>
+          </Card.Content>
+        </Card>
       </div>
     )
   }
