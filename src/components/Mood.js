@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { Card, Icon, Dropdown, Button } from 'semantic-ui-react'
 import moment from 'moment'
+import CalendarHeatmap from 'react-calendar-heatmap';
+import ReactTooltip from 'react-tooltip';
+import '../heatmap.css';
 
 const moodOptions = [
   {
@@ -63,7 +66,7 @@ class Mood extends Component {
     moodSubmitted: false
   }
 
-  componentWillMount(){
+  componentWillMount() {
     let newMoods = []
     this.props.user.moods.map(mood => {
       let newMood = { date: mood.date, count: mood.rating }
@@ -75,6 +78,36 @@ class Mood extends Component {
     })
   }
 
+  appendMood = (mood) => {
+    let newMood = { date: mood.date, count: mood.rating }
+    this.setState({
+      moods: [...this.state.moods, newMood],
+      moodSubmitted: true
+    })
+  }
+
+  submitMood = () => {
+    fetch(URL + 'moods', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.jwt
+      },
+      body: JSON.stringify({mood: {
+        date: this.state.todaysMood.date,
+        rating: this.state.todaysMood.rating,
+        user_id: this.props.user.id
+      }})
+    })
+    .then(res => res.json())
+    .then(mood => {
+      console.log("created mood:", mood )
+      this.appendMood(mood)
+    })
+    .catch(error => console.error(error))
+  }
+
   moodSelector = (
     <div>
     <Dropdown
@@ -84,7 +117,7 @@ class Mood extends Component {
       options={moodOptions}
       onChange={(ev) => {this.handleChange(ev.target.textContent)}}
     /><br/>
-    <Button onClick={() => this.setState({ moodSubmitted: true })}>
+  <Button onClick={this.submitMood}>
     <Icon name='check' /> Submit Mood</Button>
     </div>
   )
@@ -105,22 +138,61 @@ class Mood extends Component {
     })
   }
 
-  render() {
-    return (
-      <div className="div2">
-      <Card fluid className="fullsize">
-        <Card.Content header='Daily Mood' />
-        <Card.Content className="no-top-line">
-
-          {this.moodSelector}
+  SELECTOR_CARD = (
+    <div className="div2">
+    <Card fluid className="fullsize">
+      <Card.Content header='Daily Mood' />
+      <Card.Content className="no-top-line">
+        {this.moodSelector}
+      </Card.Content>
+       <Card.Content extra>
+         <Icon name='smile' />
+         How do you feel today?
        </Card.Content>
-        <Card.Content extra>
-          <Icon name='smile' />
-          How do you feel today?
-        </Card.Content>
-      </Card>
-      </div>
-    )
+     </Card>
+     </div>
+  )
+
+  HEATMAP_CARD = (
+    <div className="div2">
+    <Card fluid className="fullsize">
+      <Card.Content header='Daily Mood' />
+      <Card.Content className="no-top-line moodchart">
+        <CalendarHeatmap
+          startDate={this.props.user.start_date}
+          endDate={this.props.user.end_date}
+          values={this.state.moods}
+          showWeekdayLabels={true}
+          classForValue={value => {
+            if (!value) {
+              return 'color-empty';
+            }
+              return `color-github-${value.count}`;
+          }}
+          tooltipDataAttrs={value => {
+            return {
+              'data-tip': `${value.date}, Mood: ${value.count}`,
+            };
+          }}
+        />
+      <ReactTooltip />
+     </Card.Content>
+      <Card.Content extra>
+        <Icon name='smile' />
+        How do you feel today?
+      </Card.Content>
+    </Card>
+    </div>
+  )
+
+  render() {
+    if (this.state.moodSubmitted === true) {
+      console.log("2", this.state.moods);
+      return this.HEATMAP_CARD
+    } else {
+      console.log("1", this.state.moods);
+      return this.SELECTOR_CARD
+    }
   }
 
 }
