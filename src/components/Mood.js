@@ -141,7 +141,7 @@ class Mood extends Component {
   SELECTOR_CARD = (
     <div className="div2">
     <Card fluid className="fullsize">
-      <Card.Content header='Daily Mood' />
+      <Card.Content header='Fix this' />
       <Card.Content className="no-top-line">
         {this.moodSelector}
       </Card.Content>
