@@ -141,7 +141,7 @@ class Mood extends Component {
   SELECTOR_CARD = (
     <div className="div2">
     <Card fluid className="fullsize">
-      <Card.Content header='Fix this' />
+      <Card.Content header='Daily Mood' />
       <Card.Content className="no-top-line">
         {this.moodSelector}
       </Card.Content>
@@ -163,6 +163,7 @@ class Mood extends Component {
           endDate={this.props.user.end_date}
           values={this.state.moods}
           showWeekdayLabels={true}
+          firstWeekdayMonday={true}
           classForValue={value => {
             if (!value) {
               return 'color-empty';
