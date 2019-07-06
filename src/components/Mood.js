@@ -4,6 +4,7 @@ import moment from 'moment'
 import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
 import '../heatmap.css';
+// import 'react-calendar-heatmap/dist/styles.css';
 
 const moodOptions = [
   {
@@ -108,6 +109,12 @@ class Mood extends Component {
     .catch(error => console.error(error))
   }
 
+  getValues = () => {
+    fetch(URL + 'moods')
+    .then(res => res.json())
+    .then(moods => console.log(moods))
+  }
+
   moodSelector = (
     <div>
     <Dropdown
@@ -159,11 +166,10 @@ class Mood extends Component {
       <Card.Content header='Daily Mood' />
       <Card.Content className="no-top-line moodchart">
         <CalendarHeatmap
-          startDate={this.props.user.start_date}
-          endDate={this.props.user.end_date}
-          values={this.state.moods}
+          startDate={new Date(this.props.user.start_date)}
+          endDate={new Date(this.props.user.end_date)}
+          values={[{date: '2019-06-21', count: 7},{date: '2019-05-01', count: 5},{date: '2019-03-12', count: 3}]}
           showWeekdayLabels={true}
-          firstWeekdayMonday={true}
           classForValue={value => {
             if (!value) {
               return 'color-empty';
@@ -171,8 +177,8 @@ class Mood extends Component {
               return `color-github-${value.count}`;
           }}
           tooltipDataAttrs={value => {
-            return {
-              'data-tip': `${value.date}, Mood: ${value.count}`,
+              return {
+                'data-tip': `${value.date}, Mood: ${value.count}`
             };
           }}
         />
@@ -224,3 +230,5 @@ export default Mood;
 //     <option value="1">1 - What am I doing here?!</option>
 //   </select>
 //  </div>
+
+// [{date: '2019-06-01', count: 7},{date: '2019-05-01', count: 5},{date: '2019-04-01', count: 3}]
