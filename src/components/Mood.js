@@ -168,8 +168,9 @@ class Mood extends Component {
         <CalendarHeatmap
           startDate={new Date(this.props.user.start_date)}
           endDate={new Date(this.props.user.end_date)}
-          values={[{date: '2019-06-21', count: 7},{date: '2019-05-01', count: 5},{date: '2019-03-12', count: 3}]}
+          values={[{date: '2019-06-21', count: 7},{date: '2019-05-01', count: 5},{date: '2019-03-11', count: 3}]}
           showWeekdayLabels={true}
+          showOutOfRangeDays={true}
           classForValue={value => {
             if (!value) {
               return 'color-empty';
