@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Dropdown, Image } from 'semantic-ui-react'
-// import ProfileModal from '../modals/ProfileModal'
+import ProfileModal from '../modals/ProfileModal'
 
-const Header = (props) => {
+class Header extends Component {
 
-  function schoolLogo(school) {
-    switch (props.user.school) {
+  state = {
+    modalOpen: false
+  }
+
+  schoolLogo = (school) => {
+    switch (this.props.user.school) {
       case 'Flatiron School':
         return './images/fis.png'
       case 'Code Fellows':
@@ -19,29 +23,39 @@ const Header = (props) => {
     }
   }
 
-  const trigger = (
-    <span>
-      <i className="small circular inverted red user icon"></i> {props.user.name}
-    </span>
-  )
+  openModal = () => {
+    this.setState({
+      modalOpen: true
+    })
+  }
 
-  // function openModal() {
-    // {() => this.setState({ open: true })}
-  // }
+  closeModal = () => {
+    this.setState({ modalOpen: false })
+  }
 
-  const options = [
-    { key: 'user', text: 'Edit Profile', icon: 'user' },
-    { key: 'sign-out', text: 'Log Out', icon: 'sign out', onClick: props.logOut }
-  ]
+  render () {
+
+    const trigger = (
+      <span>
+        <i className="small circular inverted red user icon"></i> {this.props.user.name}
+      </span>
+    )
+
+
+    const options = [
+      { key: 'user', text: 'Edit Profile', icon: 'user', onClick: this.openModal },
+      { key: 'sign-out', text: 'Log Out', icon: 'sign out', onClick: this.props.logOut }
+    ]
 
     return (
       <div className="div6">
         <div><Image src='./images/bc-logo-horz.svg' alt='BaseCamp logo' /></div>
-        <div><Image src={schoolLogo(props.user.school)} avatar /> {props.user.course.name} @ {props.user.school}</div>
+        <div><Image src={this.schoolLogo(this.props.user.school)} avatar /> {this.props.user.course.name} @ {this.props.user.school}</div>
         <div><Dropdown trigger={trigger} options={options} pointing='top right' icon={null} /></div>
+        <ProfileModal closeModal={this.closeModal} open={this.state.modalOpen}/>
       </div>
     )
-
+  }
 
 }
 
