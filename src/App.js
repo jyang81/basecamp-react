@@ -48,7 +48,7 @@ class App extends Component {
               email={this.email}
               password={this.password}
               /> } />
-            {console.log("4. inside router:", this.state)}
+            // {console.log("4. inside router:", this.state)}
         </Router>
       </div>
     )
