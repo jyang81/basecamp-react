@@ -9,7 +9,7 @@ class NoteBoard extends Component {
     note_categories: []
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.setState({
       note_categories: this.props.user.note_categories
     })

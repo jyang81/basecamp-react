@@ -8,7 +8,7 @@ class NoteItemModal extends Component {
     notes: []
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.setState({
       notes: this.props.category.notes
     })
