@@ -216,6 +216,7 @@ class Signup extends Component {
 }
 
 export default Signup;
+export { schoolOptions, courseOptions };
 
 
 // ==== OLD CODE =====

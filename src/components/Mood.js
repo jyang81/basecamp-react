@@ -67,7 +67,7 @@ class Mood extends Component {
     moodSubmitted: false
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let newMoods = []
     this.props.user.moods.map(mood => {
       let newMood = { date: mood.date, count: mood.rating }
@@ -168,18 +168,18 @@ class Mood extends Component {
         <CalendarHeatmap
           startDate={new Date(this.props.user.start_date)}
           endDate={new Date(this.props.user.end_date)}
-          values={[{date: '2019-06-21', count: 7},{date: '2019-05-01', count: 5},{date: '2019-03-11', count: 3}]}
+          values={this.props.user.moods}
           showWeekdayLabels={true}
           showOutOfRangeDays={true}
           classForValue={value => {
             if (!value) {
               return 'color-empty';
             }
-              return `color-github-${value.count}`;
+              return `color-github-${value.rating}`;
           }}
           tooltipDataAttrs={value => {
               return {
-                'data-tip': `${value.date}, Mood: ${value.count}`
+                'data-tip': `${value.date}, Mood: ${value.rating}`
             };
           }}
         />
@@ -194,11 +194,9 @@ class Mood extends Component {
   )
 
   render() {
-    if (this.state.moodSubmitted === true) {
-      console.log("2", this.state.moods);
+    if (this.state.moodSubmitted === false) {
       return this.HEATMAP_CARD
     } else {
-      console.log("1", this.state.moods);
       return this.SELECTOR_CARD
     }
   }

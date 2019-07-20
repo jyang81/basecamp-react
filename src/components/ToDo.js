@@ -8,7 +8,7 @@ class ToDo extends Component {
     to_dos: []
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.setState({
       to_dos: this.props.user.to_dos
     })

@@ -43,12 +43,12 @@ class App extends Component {
         <Router>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
+          {console.log("4. inside router:", this.state)}
           <Route exact path="/signup" render={() => <Signup
               setUser={this.setUser}
               email={this.email}
               password={this.password}
               /> } />
-            // {console.log("4. inside router:", this.state)}
         </Router>
       </div>
     )

@@ -6,8 +6,6 @@ import Help from './Help';
 import ToDo from './ToDo';
 import NoteBoard from './NoteBoard';
 
-
-
 class Dashboard extends Component {
 
   render() {
@@ -25,7 +23,6 @@ class Dashboard extends Component {
       </div>
     )
   }
-
 
 }
 
