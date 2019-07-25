@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
 import { Segment, Dropdown, Header, Modal } from 'semantic-ui-react'
-import { schoolOptions, courseOptions } from '../components/Signup.js'
+import { schoolOptions } from '../components/Signup.js'
 
 class ProfileModal extends Component {
-  state = {
-    school: "",
-    course: null
+  constructor(props){
+    super(props)
+    this.state = {
+      user: {
+        name: this.props.user.name,
+        email: this.props.user.email,
+        school: this.props.user.school,
+        course_id: this.props.user.course.id,
+        start_date: this.props.user.start_date,
+        end_date: this.props.user.end_date
+      }
+    }
+    console.log("constructor:", this.state);
   }
+
 
   handleSubmit = (ev) => {
     ev.preventDefault()
@@ -22,7 +33,16 @@ class ProfileModal extends Component {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify({user: {
+        name: this.state.name,
+        email: this.state.email,
+        password: ev.target.elements.password.value,
+        password_confirmation: ev.target.elements.password_confirmation.value,
+        school: this.state.school,
+        course_id: this.state.course_id,
+        start_date: ev.target.elements.start_date.value,
+        end_date: ev.target.elements.end_date.value
+      }})
     })
     .then(res => res.json())
     .then(data => {
@@ -30,19 +50,19 @@ class ProfileModal extends Component {
     })
   }
 
-  getProfile = () => {
-    let token = this.getToken()
-    fetch(URL + 'profile', {
-      headers: {
-        'Authorization': 'Bearer ' + token
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log("2. get profile:", data.user)
-      this.props.setUser(data)
-    })
-  }
+  // getProfile = () => {
+  //   let token = this.getToken()
+  //   fetch(URL + 'profile', {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + token
+  //     }
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log("2. get profile:", data.user)
+  //     this.props.setUser(data)
+  //   })
+  // }
 
   deleteUser = (id) => {
     fetch(`${URL}users/${id}`, {
@@ -53,30 +73,38 @@ class ProfileModal extends Component {
     })
     .then(res => res.text())
     .then(this.setState({
-      user: {}
+      user: {
+      }
     }))
   }
 
-  handleChange = (course) => {
-    this.setState({
-      course: this.courseId(course)
-    })
-  }
+  // handleChange = (course) => {
+  //   this.setState({
+  //     course: this.courseId(course)
+  //   })
+  // }
 
-  courseId = (course) => {
-    switch (course) {
-      case "Software Engineering Immersive":
-        return 1
-      case "Software Engineering Online":
-        return 2
-      case "Data Science":
-        return 3
-      case "UX/UI Design":
-        return 4
-      default:
-        return 1
-    }
+  handleChange = (event) => {
+    this.setState({
+      user: { [event.target.name]: event.target.value}
+    })
+    console.log(this.state);
   }
+  //
+  // courseId = (course) => {
+  //   switch (course) {
+  //     case "Software Engineering Immersive":
+  //       return 1
+  //     case "Software Engineering Online":
+  //       return 2
+  //     case "Data Science":
+  //       return 3
+  //     case "UX/UI Design":
+  //       return 4
+  //     default:
+  //       return 1
+  //   }
+  // }
 
   render() {
     return (
@@ -90,44 +118,39 @@ class ProfileModal extends Component {
 
           <div className="form-container-2">
             <Segment>
-                <form className="ui form formMargin" onSubmit={this.createUser}>
+                <form className="ui form formMargin" onSubmit={this.updateUser}>
                   <div className="required field">
                     <label>Name</label>
-                    <input className="ui input" type="text" name="name" placeholder="Enter your name" />
+                    <input className="ui input" type="text" name="name" defaultValue={this.state.user.name} onChange={this.handleChange} />
                   </div>
                   <div className="required field">
                     <label>Email</label>
-                    <input className="ui input" type="text" name="email" placeholder="Enter your email" ref={this.props.email} />
+                    <input className="ui input" type="text" name="email" defaultValue={this.state.user.email} ref={this.props.email} onChange={this.handleChange} />
                   </div>
                   <div className="required field">
                     <label>Password</label>
-                    <input className="ui input" type="password" name="password" placeholder="Enter Password" ref={this.props.password} />
+                    <input className="ui input" type="password" name="password"  ref={this.state.password} />
                   </div>
                   <div className="required field">
                     <label>Confirm Password</label>
-                    <input className="ui input" type="password" name="password_confirmation" placeholder="Re-enter Password" />
+                    <input className="ui input" type="password" name="password_confirmation" />
                   </div>
                   <div className="required field">
                     <label>School</label>
                     <Dropdown
-                      placeholder='Select your school'
                       fluid
                       selection
                       options={schoolOptions}
-                      onChange={(ev) => {this.setState({
-                        school: ev.target.textContent
-                        })
-                      }}
+                      name="school"
+                      defaultValue={this.state.user.school}
+                      onChange={this.handleChange}
                     />
                   </div>
                   <div className="required field">
                     <label>Course</label>
-                    <Dropdown
-                      placeholder='Select your course'
-                      fluid
-                      selection
-                      options={courseOptions}
-                      onChange={(ev) => {this.handleChange(ev.target.textContent)}}
+                    <select className="ui selection dropdown"
+                      defaultValue={this.props.user.course.name}
+                      onChange={this.handleChange}
                     />
                   </div>
                   <div className="required field">
@@ -135,7 +158,9 @@ class ProfileModal extends Component {
                       <div className="ui calendar">
                         <div className="ui input left icon">
                           <i className="calendar alternate icon"></i>
-                          <input type="date" name="start_date" />
+                          <input type="date" name="start_date"
+                            defaultValue={this.state.user.start_date}
+                            onChange={this.handleChange} />
                         </div>
                       </div>
                   </div>
@@ -144,12 +169,15 @@ class ProfileModal extends Component {
                       <div className="ui calendar">
                         <div className="ui input left icon">
                           <i className="calendar alternate icon"></i>
-                          <input type="date" name="end_date" />
+                          <input type="date" name="end_date"
+                            defaultValue={this.state.user.end_date}
+                            onChange={this.handleChange}
+                            />
                         </div>
                       </div>
                   </div><br/>
                   <div id="error"></div>
-                  <div className="centered"><button type="submit" className="ui primary button">Submit</button></div>
+                  <div className="centered"><button type="submit" className="ui primary button">Update Profile</button></div>
                 </form>
             </Segment>
           </div>
