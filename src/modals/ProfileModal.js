@@ -25,21 +25,22 @@ class ProfileModal extends Component {
     ev.target.reset()
   }
 
-  updateUser = (ev, user, id) => {
+  updateUser = (ev) => {
     ev.preventDefault()
-    fetch(`${URL}users/${id}`, {
+    fetch(`${URL}users/${this.props.user.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.jwt
       },
       body: JSON.stringify({user: {
-        name: this.state.name,
-        email: this.state.email,
-        // password: ev.target.elements.password.value,
-        // password_confirmation: ev.target.elements.password_confirmation.value,
-        school: this.state.school,
-        course_id: this.state.course_id,
+        name: ev.target.elements.name.value,
+        email: ev.target.elements.email.value,
+        password: ev.target.elements.password.value,
+        password_confirmation: ev.target.elements.password_confirmation.value,
+        // school: ev.target.elements.school.value,
+        course_id: ev.target.elements.course_id.value,
         start_date: ev.target.elements.start_date.value,
         end_date: ev.target.elements.end_date.value
       }})
@@ -84,12 +85,12 @@ class ProfileModal extends Component {
   //   })
   // }
 
-  handleChange = (event) => {
-    this.setState({
-      user: { [event.target.name]: event.target.value}
-    })
-    console.log(this.state);
-  }
+  // handleChange = (event) => {
+  //   this.setState({
+  //     user: { [event.target.name]: event.target.value}
+  //   })
+  //   console.log(this.state);
+  // }
   //
   // courseId = (course) => {
   //   switch (course) {
@@ -143,15 +144,16 @@ class ProfileModal extends Component {
                       options={schoolOptions}
                       name="school"
                       defaultValue={this.state.user.school}
-                      onChange={this.handleChange}
                     />
                   </div>
                   <div className="required field">
                     <label>Course</label>
-                    <select className="ui selection dropdown"
-                      defaultValue={this.props.user.course.name}
-                      onChange={this.handleChange}
-                    />
+                      <select name="course_id" defaultValue={this.state.user.course_id} >
+                        <option value="1">Software Engineering Immersive</option>
+                        <option value="2">Software Engineering Online</option>
+                        <option value="3">Data Science</option>
+                        <option value="4">UX/UI Design</option>
+                      </select>
                   </div>
                   <div className="required field">
                     <label>Start Date</label>
@@ -160,7 +162,7 @@ class ProfileModal extends Component {
                           <i className="calendar alternate icon"></i>
                           <input type="date" name="start_date"
                             defaultValue={this.state.user.start_date}
-                            onChange={this.handleChange} />
+                             />
                         </div>
                       </div>
                   </div>
@@ -171,7 +173,6 @@ class ProfileModal extends Component {
                           <i className="calendar alternate icon"></i>
                           <input type="date" name="end_date"
                             defaultValue={this.state.user.end_date}
-                            onChange={this.handleChange}
                             />
                         </div>
                       </div>
