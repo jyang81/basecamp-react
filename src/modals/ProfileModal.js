@@ -36,8 +36,8 @@ class ProfileModal extends Component {
       body: JSON.stringify({user: {
         name: this.state.name,
         email: this.state.email,
-        password: ev.target.elements.password.value,
-        password_confirmation: ev.target.elements.password_confirmation.value,
+        // password: ev.target.elements.password.value,
+        // password_confirmation: ev.target.elements.password_confirmation.value,
         school: this.state.school,
         course_id: this.state.course_id,
         start_date: ev.target.elements.start_date.value,
