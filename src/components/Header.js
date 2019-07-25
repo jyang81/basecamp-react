@@ -52,7 +52,10 @@ class Header extends Component {
         <div><Image src='./images/bc-logo-horz.svg' alt='BaseCamp logo' /></div>
         <div><Image src={this.schoolLogo(this.props.user.school)} avatar /> {this.props.user.course.name} @ {this.props.user.school}</div>
         <div><Dropdown trigger={trigger} options={options} pointing='top right' icon={null} /></div>
-        <ProfileModal closeModal={this.closeModal} open={this.state.modalOpen}/>
+        <ProfileModal
+          closeModal={this.closeModal} open={this.state.modalOpen}
+          user={this.props.user}
+          />
       </div>
     )
   }
