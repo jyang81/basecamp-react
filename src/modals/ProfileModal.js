@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Segment, Dropdown, Header, Modal } from 'semantic-ui-react'
-import { schoolOptions } from '../components/Signup.js'
+import { Segment, Header, Modal } from 'semantic-ui-react'
+// import { schoolOptions } from '../components/Signup.js'
 
 class ProfileModal extends Component {
   constructor(props){
@@ -37,9 +37,9 @@ class ProfileModal extends Component {
       body: JSON.stringify({user: {
         name: ev.target.elements.name.value,
         email: ev.target.elements.email.value,
-        password: ev.target.elements.password.value,
-        password_confirmation: ev.target.elements.password_confirmation.value,
-        // school: ev.target.elements.school.value,
+        // password: ev.target.elements.password.value,
+        // password_confirmation: ev.target.elements.password_confirmation.value,
+        school: ev.target.elements.school.value,
         course_id: ev.target.elements.course_id.value,
         start_date: ev.target.elements.start_date.value,
         end_date: ev.target.elements.end_date.value
@@ -48,6 +48,9 @@ class ProfileModal extends Component {
     .then(res => res.json())
     .then(data => {
       console.log("1. updated:", data)
+    })
+    .catch(error => {
+      console.log("error", error)
     })
   }
 
@@ -128,27 +131,26 @@ class ProfileModal extends Component {
                     <label>Email</label>
                     <input className="ui input" type="text" name="email" defaultValue={this.state.user.email} ref={this.props.email} onChange={this.handleChange} />
                   </div>
-                  <div className="required field">
+                  <div>
                     <label>Password</label>
                     <input className="ui input" type="password" name="password"  ref={this.state.password} />
                   </div>
-                  <div className="required field">
+                  <div>
                     <label>Confirm Password</label>
                     <input className="ui input" type="password" name="password_confirmation" />
                   </div>
-                  <div className="required field">
+                  <div>
                     <label>School</label>
-                    <Dropdown
-                      fluid
-                      selection
-                      options={schoolOptions}
-                      name="school"
-                      defaultValue={this.state.user.school}
-                    />
+                      <select className="ui selection dropdown" name="school" defaultValue={this.state.user.school} >
+                        <option value="Flatiron School">Flatiron School</option>
+                        <option value="Code Fellows">Code Fellows</option>
+                        <option value="General Assembly">General Assembly</option>
+                        <option value="Galvanize">Galvanize</option>
+                      </select>
                   </div>
-                  <div className="required field">
+                  <div>
                     <label>Course</label>
-                      <select name="course_id" defaultValue={this.state.user.course_id} >
+                      <select className="ui selection dropdown" name="course_id" defaultValue={this.state.user.course_id} >
                         <option value="1">Software Engineering Immersive</option>
                         <option value="2">Software Engineering Online</option>
                         <option value="3">Data Science</option>
