@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
 import { Segment, Header, Modal } from 'semantic-ui-react'
-// import { schoolOptions } from '../components/Signup.js'
 
 class ProfileModal extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      user: {
-        name: this.props.user.name,
-        email: this.props.user.email,
-        school: this.props.user.school,
-        course_id: this.props.user.course.id,
-        start_date: this.props.user.start_date,
-        end_date: this.props.user.end_date
-      }
-    }
-    console.log("constructor:", this.state);
-  }
-
+  // constructor(props){
+  //   super(props)
+  //   this.state = {
+  //     user: {
+  //       name: this.props.user.name,
+  //       email: this.props.user.email,
+  //       school: this.props.user.school,
+  //       course_id: this.props.user.course.id,
+  //       start_date: this.props.user.start_date,
+  //       end_date: this.props.user.end_date
+  //     }
+  //   }
+  //   console.log("constructor:", this.state);
+  // }
 
   handleSubmit = (ev) => {
     ev.preventDefault()
     this.updateUser(ev)
     ev.target.reset()
+  }
+
+  handleErrors = (res) => {
+    if (!res.ok) {
+        throw Error(res.statusText);
+    }
+    return res;
   }
 
   updateUser = (ev) => {
@@ -37,36 +42,23 @@ class ProfileModal extends Component {
       body: JSON.stringify({user: {
         name: ev.target.elements.name.value,
         email: ev.target.elements.email.value,
-        // password: ev.target.elements.password.value,
-        // password_confirmation: ev.target.elements.password_confirmation.value,
+        password: ev.target.elements.password.value,
+        password_confirmation: ev.target.elements.password_confirmation.value,
         school: ev.target.elements.school.value,
         course_id: ev.target.elements.course_id.value,
         start_date: ev.target.elements.start_date.value,
         end_date: ev.target.elements.end_date.value
       }})
     })
+    .then(this.handleErrors)
     .then(res => res.json())
     .then(data => {
-      console.log("1. updated:", data)
+      console.log("new data", data);
+      this.props.updateUserInfo(data);
+      this.props.closeModal()
     })
-    .catch(error => {
-      console.log("error", error)
-    })
+    .catch(errors => console.log(errors))
   }
-
-  // getProfile = () => {
-  //   let token = this.getToken()
-  //   fetch(URL + 'profile', {
-  //     headers: {
-  //       'Authorization': 'Bearer ' + token
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     console.log("2. get profile:", data.user)
-  //     this.props.setUser(data)
-  //   })
-  // }
 
   deleteUser = (id) => {
     fetch(`${URL}users/${id}`, {
@@ -82,12 +74,6 @@ class ProfileModal extends Component {
     }))
   }
 
-  // handleChange = (course) => {
-  //   this.setState({
-  //     course: this.courseId(course)
-  //   })
-  // }
-
   // handleChange = (event) => {
   //   this.setState({
   //     user: { [event.target.name]: event.target.value}
@@ -95,20 +81,7 @@ class ProfileModal extends Component {
   //   console.log(this.state);
   // }
   //
-  // courseId = (course) => {
-  //   switch (course) {
-  //     case "Software Engineering Immersive":
-  //       return 1
-  //     case "Software Engineering Online":
-  //       return 2
-  //     case "Data Science":
-  //       return 3
-  //     case "UX/UI Design":
-  //       return 4
-  //     default:
-  //       return 1
-  //   }
-  // }
+
 
   render() {
     return (
@@ -125,32 +98,32 @@ class ProfileModal extends Component {
                 <form className="ui form formMargin" onSubmit={this.updateUser}>
                   <div className="required field">
                     <label>Name</label>
-                    <input className="ui input" type="text" name="name" defaultValue={this.state.user.name} onChange={this.handleChange} />
+                    <input className="ui input" type="text" name="name" defaultValue={this.props.user.name} onChange={this.handleChange} />
                   </div>
                   <div className="required field">
                     <label>Email</label>
-                    <input className="ui input" type="text" name="email" defaultValue={this.state.user.email} ref={this.props.email} onChange={this.handleChange} />
+                    <input className="ui input" type="text" name="email" defaultValue={this.props.user.email} ref={this.props.email} onChange={this.handleChange} />
                   </div>
-                  <div>
+                  <div className="required field">
                     <label>Password</label>
-                    <input className="ui input" type="password" name="password"  ref={this.state.password} />
+                    <input className="ui input" type="password" name="password" required />
                   </div>
-                  <div>
+                  <div className="required field">
                     <label>Confirm Password</label>
-                    <input className="ui input" type="password" name="password_confirmation" />
+                    <input className="ui input" type="password" name="password_confirmation" required />
                   </div>
-                  <div>
+                  <div className="field">
                     <label>School</label>
-                      <select className="ui selection dropdown" name="school" defaultValue={this.state.user.school} >
+                      <select className="ui selection dropdown" name="school" defaultValue={this.props.user.school} >
                         <option value="Flatiron School">Flatiron School</option>
                         <option value="Code Fellows">Code Fellows</option>
                         <option value="General Assembly">General Assembly</option>
                         <option value="Galvanize">Galvanize</option>
                       </select>
                   </div>
-                  <div>
+                  <div className="field">
                     <label>Course</label>
-                      <select className="ui selection dropdown" name="course_id" defaultValue={this.state.user.course_id} >
+                      <select className="ui selection dropdown" name="course_id" defaultValue={this.props.user.course_id} >
                         <option value="1">Software Engineering Immersive</option>
                         <option value="2">Software Engineering Online</option>
                         <option value="3">Data Science</option>
@@ -163,7 +136,7 @@ class ProfileModal extends Component {
                         <div className="ui input left icon">
                           <i className="calendar alternate icon"></i>
                           <input type="date" name="start_date"
-                            defaultValue={this.state.user.start_date}
+                            defaultValue={this.props.user.start_date}
                              />
                         </div>
                       </div>
@@ -174,7 +147,7 @@ class ProfileModal extends Component {
                         <div className="ui input left icon">
                           <i className="calendar alternate icon"></i>
                           <input type="date" name="end_date"
-                            defaultValue={this.state.user.end_date}
+                            defaultValue={this.props.user.end_date}
                             />
                         </div>
                       </div>

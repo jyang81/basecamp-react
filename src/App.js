@@ -23,6 +23,13 @@ class App extends Component {
     }, () => {console.log('3. set user', this.state)}
     )}
 
+  updateUserInfo = (data) => {
+    this.setState({
+      user: data,
+      loggedIn: true
+    }, () => {console.log('updated user', this.state)}
+    )}
+
   logOut = () => {
     localStorage.removeItem('jwt')
     this.setState({
@@ -33,7 +40,7 @@ class App extends Component {
 
   render() {
     if (this.state.loggedIn === true && Object.keys(this.state.user).length !== 0) {
-      return <Dashboard user={this.state.user} logOut={this.logOut} setUser={this.setUser} />
+      return <Dashboard user={this.state.user} logOut={this.logOut} updateUserInfo={this.updateUserInfo} />
     }
     return (
       <div className="App">

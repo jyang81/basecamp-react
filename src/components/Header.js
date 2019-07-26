@@ -54,7 +54,7 @@ class Header extends Component {
         <div><Dropdown trigger={trigger} options={options} pointing='top right' icon={null} /></div>
         <ProfileModal
           closeModal={this.closeModal} open={this.state.modalOpen}
-          user={this.props.user} setUser={this.props.setUser}
+          user={this.props.user} updateUserInfo={this.props.updateUserInfo}
           />
       </div>
     )

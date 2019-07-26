@@ -15,7 +15,7 @@ class Dashboard extends Component {
         <div className="parent">
           <Header user={this.props.user}
             logOut={this.props.logOut}
-            setUser={this.props.setUser}
+            updateUserInfo={this.props.updateUserInfo}
           />
           <Timer user={this.props.user} />
           <Mood user={this.props.user} />
