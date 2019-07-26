@@ -33,7 +33,7 @@ class App extends Component {
 
   render() {
     if (this.state.loggedIn === true && Object.keys(this.state.user).length !== 0) {
-      return <Dashboard user={this.state.user} logOut={this.logOut} />
+      return <Dashboard user={this.state.user} logOut={this.logOut} setUser={this.setUser} />
     }
     return (
       <div className="App">

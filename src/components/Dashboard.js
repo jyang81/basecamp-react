@@ -13,7 +13,10 @@ class Dashboard extends Component {
     return (
       <div className="App">
         <div className="parent">
-          <Header user={this.props.user} logOut={this.props.logOut} />
+          <Header user={this.props.user}
+            logOut={this.props.logOut}
+            setUser={this.props.setUser}
+          />
           <Timer user={this.props.user} />
           <Mood user={this.props.user} />
           <ToDo user={this.props.user} />
