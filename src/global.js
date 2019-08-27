@@ -1,2 +1,5 @@
 // eslint-disable-next-line
-URL = 'http://localhost:5000/api/v1/'
+URL = 'https://basecamp-rails.herokuapp.com/'
+
+// Local URL for testing
+// URL = 'http://localhost:5000/api/v1/'
