@@ -53,7 +53,7 @@ Live site is hosted at https://base-camp.netlify.com
 
 ## Credits
 
-- [react-calendar-heatmap](https://github.com/kevinsqi/react-calendar-heatmap) for mood component
+- [react-calendar-heatmap](https://github.com/kevinsqi/react-calendar-heatmap)
 - [moment.js](https://momentjs.com/)
 
 ## License
