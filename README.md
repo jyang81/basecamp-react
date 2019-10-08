@@ -53,7 +53,12 @@ Live site is hosted at https://base-camp.netlify.com
 
 ## Credits
 
-react-calendar-heatmap
+- [react-calendar-heatmap](https://github.com/kevinsqi/react-calendar-heatmap)
+- [moment.js](https://momentjs.com/)
+
+## License
+
+MIT © jyang81
 
 ---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
