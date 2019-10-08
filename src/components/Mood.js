@@ -1,63 +1,12 @@
 import React, {Component} from 'react';
-import { Card, Icon, Dropdown, Button } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 import moment from 'moment'
 import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
 import '../heatmap.css';
+import MoodModal from '../modals/MoodModal';
 // import 'react-calendar-heatmap/dist/styles.css';
 
-const moodOptions = [
-  {
-    key: "10 - I should be teaching!",
-    text: "10 - I should be teaching!",
-    value: 10,
-  },
-  {
-    key: "9 - Relax Day",
-    text: "9 - Relax Day",
-    value: 9,
-  },
-  {
-    key: "8 - Learning is fun!",
-    text: "8 - Learning is fun!",
-    value: 8,
-  },
-  {
-    key: "7 - Comfortable- All caught up",
-    text: "7 - Comfortable- All caught up",
-    value: 7,
-  },
-  {
-    key: "6 - Just barely keeping up",
-    text: "6 - Just barely keeping up",
-    value: 6,
-  },
-  {
-    key: "5 - Playing catch up",
-    text: "5 - Playing catch up",
-    value: 5,
-  },
-  {
-    key: "4 - I have so much to do!",
-    text: "4 - I have so much to do!",
-    value: 4,
-  },
-  {
-    key: "3 - Stressed out, but not panicking",
-    text: "3 - Stressed out, but not panicking",
-    value: 3,
-  },
-  {
-    key: "2 - Starting to panic!",
-    text: "2 - Starting to panic!",
-    value: 2,
-  },
-  {
-    key: "1 - What am I doing here?!",
-    text: "1 - What am I doing here?!",
-    value: 1,
-  }
-]
 
 
 class Mood extends Component {
@@ -115,19 +64,19 @@ class Mood extends Component {
     .then(moods => console.log(moods))
   }
 
-  moodSelector = (
-    <div>
-    <Dropdown
-      placeholder='Select your Mood'
-      fluid
-      selection
-      options={moodOptions}
-      onChange={(ev) => {this.handleChange(ev.target.textContent)}}
-    /><br/>
-  <Button onClick={this.submitMood}>
-    <Icon name='check' /> Submit Mood</Button>
-    </div>
-  )
+  // moodSelector = (
+  //   <div>
+  //   <Dropdown
+  //     placeholder='Select your Mood'
+  //     fluid
+  //     selection
+  //     options={moodOptions}
+  //     onChange={(ev) => {this.handleChange(ev.target.textContent)}}
+  //   /><br/>
+  // <Button onClick={this.submitMood}>
+  //   <Icon name='check' /> Submit Mood</Button>
+  //   </div>
+  // )
 
   moodRating = (mood) => {
     let regex = /[^0-9]+/gm
@@ -186,8 +135,7 @@ class Mood extends Component {
       <ReactTooltip />
      </Card.Content>
       <Card.Content extra>
-        <Icon name='smile' />
-        How do you feel today?
+        <MoodModal user={this.props.user} submitMood={this.submitMood}/>
       </Card.Content>
     </Card>
     </div>
