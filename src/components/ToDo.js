@@ -26,7 +26,8 @@ class ToDo extends Component {
         item: ev.target.elements["todoitem"].value,
         category: ev.target.elements["category"].value,
         due_date: ev.target.elements["due_date"].value,
-        user_id: this.props.user.id
+        user_id: this.props.user.id,
+        is_done: false
       }})
     })
     .then(res => res.json())
