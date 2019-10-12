@@ -16,6 +16,7 @@ class ToDoItem extends Component {
   handleClick(ev) {
     this.setState({
       checked: !this.state.checked
+      // change this.props.to_do.is_done to true
     })
   }
 
