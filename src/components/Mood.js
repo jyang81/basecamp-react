@@ -8,7 +8,6 @@ import MoodModal from '../modals/MoodModal';
 // import 'react-calendar-heatmap/dist/styles.css';
 
 
-
 class Mood extends Component {
   state = {
     moods: [],
