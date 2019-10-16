@@ -54,7 +54,7 @@ class Login extends Component {
     localStorage.setItem('jwt', jwt)
   }
 
-  getToken(jwt) {
+  getToken() {
     return localStorage.getItem('jwt')
   }
 

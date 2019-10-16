@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Signup from './components/Signup';
@@ -16,15 +16,15 @@ class App extends Component {
 
   setUser = (data) => {
     this.setState({
-      user: data.user,
-      loggedIn: true
+      loggedIn: true,
+      user: data.user
     }, () => {console.log('3. set user', this.state)}
     )}
 
   updateUserInfo = (data) => {
     this.setState({
-      user: data,
-      loggedIn: true
+      loggedIn: true,
+      user: data
     }, () => {console.log('updated user', this.state)}
     )}
 
@@ -38,26 +38,32 @@ class App extends Component {
 
   render() {
     if (this.state.loggedIn === true && Object.keys(this.state.user).length !== 0) {
-      return <Dashboard user={this.state.user} logOut={this.logOut} updateUserInfo={this.updateUserInfo} />
+      // need to route to '/dashboard' path
+      return <Dashboard user={this.state.user} logOut={this.logOut} updateUserInfo={this.updateUserInfo} /> 
     }
+
     return (
       <div className="App">
         <div className="welcome">
-          <div><Link to="/"><img src='./images/bc-logo-horz.svg' alt='BaseCamp logo'/></Link></div>
+          <Link to="/"><img src='./images/bc-logo-horz.svg' alt='BaseCamp logo' /></Link>
         </div>
-        <Router>
-          <Route exact path="/" component={Welcome} />
-          <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
-          {console.log("4. inside router:", this.state)}
-          <Route exact path="/signup" render={() => <Signup
-              setUser={this.setUser}
+        <Switch>
+          <Route exact path="/login">
+            <Login setUser={this.setUser} />
+          </Route>
+          <Route exact path="/signup">
+            <Signup setUser={this.setUser}
               email={this.email}
-              password={this.password}
-              /> } />
-        </Router>
+              password={this.password} />
+          </Route>
+          <Route path="/" >
+            <Welcome />
+          </Route>
+        </Switch>
       </div>
     )
   }
+
 }
 
 export default App;
@@ -67,4 +73,25 @@ export default App;
 // ============= OLD CODE =================
 
 
-  // <Route exact path="/dashboard" render={() => Object.keys(this.state.user).length !== 0 ? <Dashboard user={this.state.user} /> : null} />
+// <Route exact path="/dashboard" render={() => Object.keys(this.state.user).length !== 0 ? <Dashboard user={this.state.user} /> : null} />
+
+// if (this.state.loggedIn === true && Object.keys(this.state.user).length !== 0) {
+//   return <Dashboard user={this.state.user} logOut={this.logOut} updateUserInfo={this.updateUserInfo} />
+// }
+// return (
+//   <div className="App">
+//     <div className="welcome">
+//       <div><Link to="/"><img src='./images/bc-logo-horz.svg' alt='BaseCamp logo'/></Link></div>
+//     </div>
+//     <Router>
+//       <Route exact path="/" component={Welcome} />
+//       <Route exact path="/login" render={() => <Login setUser={this.setUser} />} />
+//       {console.log("4. inside router:", this.state)}
+//       <Route exact path="/signup" render={() => <Signup
+//           setUser={this.setUser}
+//           email={this.email}
+//           password={this.password}
+//           /> } />
+//     </Router>
+//   </div>
+// )
