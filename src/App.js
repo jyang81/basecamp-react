@@ -39,6 +39,7 @@ class App extends Component {
   render() {
     if (this.state.loggedIn === true && Object.keys(this.state.user).length !== 0) {
       // need to route to '/dashboard' path
+      // need to keep user logged in on refresh
       return <Dashboard user={this.state.user} logOut={this.logOut} updateUserInfo={this.updateUserInfo} /> 
     }
 
