@@ -14,25 +14,24 @@ class Mood extends Component {
     todaysMood: {}
   }
 
-  // componentDidMount() {
-  //   // let newMoods = []
-  //   // this.props.user.moods.map(mood => {
-  //   //   let newMood = { date: mood.date, count: mood.rating }
-  //   //   newMoods.push(newMood)
-  //   //   return newMoods
-  //   // })
-  //     this.setState({
-  //       moods: newMoods
-  //   })
-  //   // console.log('set moods', this.state.moods)
-  // }
+  componentDidMount() {
+    let newMoods = []
+    this.props.user.moods.map(mood => {
+      let newMood = { date: mood.date, rating: mood.rating }
+      newMoods.push(newMood)
+      return newMoods
+    })
+    this.setState({
+      moods: newMoods
+    })
+  }
 
   appendMood = (mood) => {
-    let newMood = { date: mood.date, count: mood.rating }
+    let newMood = { date: mood.date, rating: mood.rating }
     this.setState({
       moods: [...this.state.moods, newMood]
     })
-    // console.log('added mood', this.state.moods)
+    console.log('added mood', newMood)
   }
 
   submitMood = () => {
@@ -67,7 +66,7 @@ class Mood extends Component {
   handleChange = (mood) => {
     this.setState({
       todaysMood: {
-        // date: '2019-10-15',
+        // date: '2019-10-01',
         date: moment().format('YYYY-MM-DD'),
         rating: this.moodRating(mood)
       }
@@ -83,7 +82,7 @@ class Mood extends Component {
             <CalendarHeatmap
               startDate={new Date(this.props.user.start_date)}
               endDate={new Date(this.props.user.end_date)}
-              values={this.props.user.moods}
+              values={this.state.moods}
               showWeekdayLabels={true}
               showOutOfRangeDays={true}
               classForValue={value => {
@@ -121,43 +120,3 @@ class Mood extends Component {
 
 export default Mood;
 
-    // <MyResponsiveCalendar className="moodchart" user={this.props.user} moods={this.state.moods} />
-//
-// if (this.state.todaysMood) {
-//   <MoodChart />
-// } else {
-//   {moodSelector}
-// }
-          // <MoodChart />
-
-// <div className='content'>
-//   <select className="ui dropdown">
-//     <option value="">Select Your Mood</option>
-//     <option value="10">10 - I should be teaching!</option>
-//     <option value="9">9 - Relax Day</option>
-//     <option value="8">8 - Learning is fun!</option>
-//     <option value="7">7 - Comfortable- All caught up</option>
-//     <option value="6">6 - Just barely keeping up</option>
-//     <option value="5">5 - Playing catch up</option>
-//     <option value="4">4 - I have so much to do!</option>
-//     <option value="3">1 - What am I doing here?!</option>
-//     <option value="2">2 - Starting to panic!</option>
-//     <option value="1">1 - What am I doing here?!</option>
-//   </select>
-//  </div>
-
-// [{date: '2019-06-01', count: 7},{date: '2019-05-01', count: 5},{date: '2019-04-01', count: 3}]
-
-  // moodSelector = (
-  //   <div>
-  //   <Dropdown
-  //     placeholder='Select your Mood'
-  //     fluid
-  //     selection
-  //     options={moodOptions}
-  //     onChange={(ev) => {this.handleChange(ev.target.textContent)}}
-  //   /><br/>
-  // <Button onClick={this.submitMood}>
-  //   <Icon name='check' /> Submit Mood</Button>
-  //   </div>
-  // )
