@@ -13,6 +13,10 @@ class ToDoItem extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+// Need to set state from props with initial is_done value
+// onClick send POST request to server changing value
+// redo "checked" toggle to to_do.is_done value
+
   handleClick(ev) {
     this.setState({
       checked: !this.state.checked
