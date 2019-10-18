@@ -22,6 +22,11 @@ class Dashboard extends Component {
           <ToDo user={this.props.user} />
           <NoteBoard user={this.props.user} />
           <Help />
+          <div className="div7">
+            <div className="right">
+              Version 1.0 - Updated Oct 2019
+            </div>
+          </div>
         </div>
       </div>
     )

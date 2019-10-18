@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Header, Icon, Modal, Dropdown } from 'semantic-ui-react'
-import moment from 'moment'
+// import moment from 'moment'
 
 
 const moodOptions = [
@@ -66,19 +66,13 @@ class MoodModal extends Component {
     this.setState({ open: false })
   }
 
-  handleSubmit = (ev) => {
-    ev.preventDefault()
-    this.props.createToDo(ev)
-    this.closeModal()
-  }
-
-  appendMood = (mood) => {
-    let newMood = { date: mood.date, count: mood.rating }
-    this.setState({
-      moods: [...this.state.moods, newMood],
-      moodSubmitted: true
-    })
-  }
+  // appendMood = (mood) => {
+  //   let newMood = { date: mood.date, count: mood.rating }
+  //   this.setState({
+  //     moods: [...this.state.moods, newMood],
+  //     moodSubmitted: true
+  //   })
+  // }
 
   moodRating = (mood) => {
     let regex = /[^0-9]+/gm
@@ -87,14 +81,10 @@ class MoodModal extends Component {
     return moodNum
   }
 
-  handleChange = (mood) => {
-    this.setState({
-      todaysMood: {
-        date: moment().format('YYYY-MM-DD'),
-        rating: this.moodRating(mood)
-      }
-    })
-  }
+handleSubmit = () => {
+  this.props.submitMood()
+  this.closeModal()
+}
 
   render() {
     const {open} = this.state
@@ -103,9 +93,9 @@ class MoodModal extends Component {
         onClose={this.closeModal}
         open={open}
         trigger={<Button onClick={() => this.setState({ open: true })}>
-        <Icon name='smile' /> How do you feel today?</Button>}
+        <Icon name='smile' />Log your mood</Button>}
         closeIcon >
-        <Header icon='smile outline' content='Submit Your Mood' />
+        <Header icon='smile outline' content='How are you feeling today?' />
         <Modal.Content>
 
             <div>
@@ -114,10 +104,10 @@ class MoodModal extends Component {
               fluid
               selection
               options={moodOptions}
-              onChange={(ev) => {this.handleChange(ev.target.textContent)}}
+              onChange={(ev) => {this.props.handleChange(ev.target.textContent)}}
             /><br/>
-          <Button onClick={this.submitMood}>
-            <Icon name='check' /> Submit Mood</Button>
+          <Button onClick={this.handleSubmit}>
+            <Icon name='check' />Submit Mood</Button>
             </div>
 
         </Modal.Content>

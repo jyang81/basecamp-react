@@ -19,7 +19,7 @@ class Help extends Component {
         <Card.Content header="In Case of Emergency" />
         <Card.Content className="no-top-line" description={helpbutton} />
         <Card.Content extra>
-          <Icon name='exclamation circle' /> Click the button if you get stuck
+          <Icon name='exclamation circle' />Click 'HELP' to debug
         </Card.Content>
       </Card>
       </div>

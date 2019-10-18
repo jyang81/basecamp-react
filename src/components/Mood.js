@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, Icon } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import moment from 'moment'
 import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
@@ -11,28 +11,28 @@ import MoodModal from '../modals/MoodModal';
 class Mood extends Component {
   state = {
     moods: [],
-    todaysMood: {},
-    moodSubmitted: false
+    todaysMood: {}
   }
 
-  componentDidMount() {
-    let newMoods = []
-    this.props.user.moods.map(mood => {
-      let newMood = { date: mood.date, count: mood.rating }
-      newMoods.push(newMood)
-      return newMoods
-    })
-      this.setState({
-        moods: newMoods
-    })
-  }
+  // componentDidMount() {
+  //   // let newMoods = []
+  //   // this.props.user.moods.map(mood => {
+  //   //   let newMood = { date: mood.date, count: mood.rating }
+  //   //   newMoods.push(newMood)
+  //   //   return newMoods
+  //   // })
+  //     this.setState({
+  //       moods: newMoods
+  //   })
+  //   // console.log('set moods', this.state.moods)
+  // }
 
   appendMood = (mood) => {
     let newMood = { date: mood.date, count: mood.rating }
     this.setState({
-      moods: [...this.state.moods, newMood],
-      moodSubmitted: true
+      moods: [...this.state.moods, newMood]
     })
+    // console.log('added mood', this.state.moods)
   }
 
   submitMood = () => {
@@ -57,26 +57,6 @@ class Mood extends Component {
     .catch(error => console.error(error))
   }
 
-  getValues = () => {
-    fetch(URL + 'moods')
-    .then(res => res.json())
-    .then(moods => console.log(moods))
-  }
-
-  // moodSelector = (
-  //   <div>
-  //   <Dropdown
-  //     placeholder='Select your Mood'
-  //     fluid
-  //     selection
-  //     options={moodOptions}
-  //     onChange={(ev) => {this.handleChange(ev.target.textContent)}}
-  //   /><br/>
-  // <Button onClick={this.submitMood}>
-  //   <Icon name='check' /> Submit Mood</Button>
-  //   </div>
-  // )
-
   moodRating = (mood) => {
     let regex = /[^0-9]+/gm
     let result = mood.replace(regex, "")
@@ -87,65 +67,54 @@ class Mood extends Component {
   handleChange = (mood) => {
     this.setState({
       todaysMood: {
+        // date: '2019-10-15',
         date: moment().format('YYYY-MM-DD'),
         rating: this.moodRating(mood)
       }
     })
   }
 
-  SELECTOR_CARD = (
-    <div className="div2">
-    <Card fluid className="fullsize">
-      <Card.Content header='Daily Mood' />
-      <Card.Content className="no-top-line">
-        {this.moodSelector}
-      </Card.Content>
-       <Card.Content extra>
-         <Icon name='smile' />
-         How do you feel today?
-       </Card.Content>
-     </Card>
-     </div>
-  )
-
-  HEATMAP_CARD = (
-    <div className="div2">
-    <Card fluid className="fullsize">
-      <Card.Content header='Daily Mood' />
-      <Card.Content className="no-top-line moodchart">
-        <CalendarHeatmap
-          startDate={new Date(this.props.user.start_date)}
-          endDate={new Date(this.props.user.end_date)}
-          values={this.props.user.moods}
-          showWeekdayLabels={true}
-          showOutOfRangeDays={true}
-          classForValue={value => {
-            if (!value) {
-              return 'color-empty';
-            }
-              return `color-github-${value.rating}`;
-          }}
-          tooltipDataAttrs={value => {
-              return {
-                'data-tip': `${value.date}, Mood: ${value.rating}`
-            };
-          }}
-        />
-      <ReactTooltip />
-     </Card.Content>
-      <Card.Content extra>
-        <MoodModal user={this.props.user} submitMood={this.submitMood}/>
-      </Card.Content>
-    </Card>
-    </div>
-  )
-
   render() {
-    if (this.state.moodSubmitted === false) {
-      return this.HEATMAP_CARD
-    } else {
-      return this.SELECTOR_CARD
-    }
+    return (
+      <div className="div2">
+        <Card fluid className="fullsize">
+          <Card.Content header='Daily Mood' />
+          <Card.Content className="no-top-line moodchart">
+            <CalendarHeatmap
+              startDate={new Date(this.props.user.start_date)}
+              endDate={new Date(this.props.user.end_date)}
+              values={this.props.user.moods}
+              showWeekdayLabels={true}
+              showOutOfRangeDays={true}
+              classForValue={value => {
+                if (!value) {
+                  return 'color-empty';
+                }
+                return `color-github-${value.rating}`;
+              }}
+              tooltipDataAttrs={value => {
+                if (value.date === null) {
+                  return {
+                    'data-tip': 'No mood recorded'
+                  }
+                }
+                return {
+                  'data-tip': `${value.date}, Mood: ${value.rating}`
+                };
+              }}
+            />
+            <ReactTooltip />
+          </Card.Content>
+          <Card.Content extra>
+            <MoodModal 
+            user={this.props.user} 
+            submitMood={this.submitMood}
+            handleChange={this.handleChange}
+             />
+          </Card.Content>
+        </Card>
+      </div>
+    ) 
   }
 
 }
@@ -178,3 +147,17 @@ export default Mood;
 //  </div>
 
 // [{date: '2019-06-01', count: 7},{date: '2019-05-01', count: 5},{date: '2019-04-01', count: 3}]
+
+  // moodSelector = (
+  //   <div>
+  //   <Dropdown
+  //     placeholder='Select your Mood'
+  //     fluid
+  //     selection
+  //     options={moodOptions}
+  //     onChange={(ev) => {this.handleChange(ev.target.textContent)}}
+  //   /><br/>
+  // <Button onClick={this.submitMood}>
+  //   <Icon name='check' /> Submit Mood</Button>
+  //   </div>
+  // )
