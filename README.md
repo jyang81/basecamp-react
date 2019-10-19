@@ -1,10 +1,10 @@
 # BaseCamp
 
-###### A dashboard app for bootcamp students to help stay organized and on track during their program.
+#### *A multi-component dashboard app for coding bootcamp students to keep organized and on track throughout their program.*
 
 ### Motivation
 
-I created BaseCamp because I wanted a home base for all of my bootcamp related activities/ideas/feelings/tips/etc. I found that I was taking notes and jotting down ideas in several different places, and I wanted to have a 'single source of truth' for all of my notes that I could access easily in an organized manner.
+I created BaseCamp because I wanted a home base for all of my bootcamp related activities/ideas/feelings/tips/etc. I found that I was taking notes and jotting down ideas in several different places, and I wanted to have a 'single source of truth' for all of my notes that I could easily access in an organized manner.
 
 Attending a bootcamp is a pretty intense experience. There is so much information thrown at you, and it goes by so fast. I wanted to create an app to help bring order to some of the craziness that is bootcamp life.
 
