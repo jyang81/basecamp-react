@@ -24,7 +24,7 @@ class Dashboard extends Component {
           <Help />
           <div className="div7">
             <div className="right">
-              Version 1.0 - Updated Oct 2019
+              Version 1.1 - Updated Nov 2019
             </div>
           </div>
         </div>
