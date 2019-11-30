@@ -30,22 +30,19 @@ A user can update their user info, including school, course, and end date if the
 
 ## Installation
 
-To run the server locally:
-1. Clone Repo
-2. Run `rails s` to start the server
-3. Run `yarn start` or `npm start` to load the app
+To run the app on your machine:
+
+```
+$ git clone <repo-name>
+
+$ npm start or yarn start
+```
 
 Live site is hosted at https://base-camp.netlify.com
 
 ## Screenshot
 
-## Database Models
-
-
-
-
-
-
+![Dashboard](/public/screenshot1.jpg)
 
 ## Build Status
 
