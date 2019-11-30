@@ -32,26 +32,17 @@ A user can update their user info, including school, course, and end date if the
 
 To run the app on your machine:
 
-1. Fork and Clone Front End Repo
 ```
-$ git clone [your repo]
-```
-2. Run the app on localhost
-```
-$ yarn start or npm start
+$ git clone <repo-name>
+
+$ npm start or yarn start
 ```
 
 Live site is hosted at https://base-camp.netlify.com
 
 ## Screenshot
 
-## Database Models
-
-
-
-
-
-
+![Dashboard](/public/screenshot1.jpg)
 
 ## Build Status
 
