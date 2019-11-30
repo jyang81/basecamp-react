@@ -42,7 +42,7 @@ Live site is hosted at https://base-camp.netlify.com
 
 ## Screenshot
 
-![Dashboard](/public/screenshot1.jpg)
+![Dashboard](/public/screenshot-dashboard-w.jpg)
 
 ## Build Status
 
