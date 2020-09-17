@@ -66,13 +66,6 @@ class MoodModal extends Component {
     this.setState({ open: false })
   }
 
-  // appendMood = (mood) => {
-  //   let newMood = { date: mood.date, count: mood.rating }
-  //   this.setState({
-  //     moods: [...this.state.moods, newMood],
-  //     moodSubmitted: true
-  //   })
-  // }
 
   moodRating = (mood) => {
     let regex = /[^0-9]+/gm

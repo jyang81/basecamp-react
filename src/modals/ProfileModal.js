@@ -2,20 +2,6 @@ import React, { Component } from 'react'
 import { Segment, Header, Modal } from 'semantic-ui-react'
 
 class ProfileModal extends Component {
-  // constructor(props){
-  //   super(props)
-  //   this.state = {
-  //     user: {
-  //       name: this.props.user.name,
-  //       email: this.props.user.email,
-  //       school: this.props.user.school,
-  //       course_id: this.props.user.course.id,
-  //       start_date: this.props.user.start_date,
-  //       end_date: this.props.user.end_date
-  //     }
-  //   }
-  //   console.log("constructor:", this.state);
-  // }
 
   handleSubmit = (ev) => {
     ev.preventDefault()
@@ -73,15 +59,6 @@ class ProfileModal extends Component {
       }
     }))
   }
-
-  // handleChange = (event) => {
-  //   this.setState({
-  //     user: { [event.target.name]: event.target.value}
-  //   })
-  //   console.log(this.state);
-  // }
-  //
-
 
   render() {
     return (

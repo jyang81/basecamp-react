@@ -3,24 +3,12 @@ import { Card, Icon, Progress } from 'semantic-ui-react'
 import moment from 'moment'
 
 class Timer extends Component {
-  // constructor() {
-  //   super()
-    // this.state = {
-    // }
-  // }
-  //
+
   getTimeRemaining = (end) => {
     let t = Date.parse(end) - Date.parse(new Date());
     let days = Math.floor( t/(1000*60*60*24) + 1);
     return days
   }
-
-  //
-  // getTimeRemaining = (end) => {
-  //   let a = moment(end)
-  //   let b = moment([])
-  //   a.diff(b, 'days')
-  // }
 
   completedTime = () => {
     let start = Date.parse(this.props.user.start_date)
