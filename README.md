@@ -38,7 +38,7 @@ $ git clone <repo-name>
 $ npm start or yarn start
 ```
 
-Live site is hosted at https://base-camp.netlify.com (Please log in with `email: demo@demo.com & pw: demo` for optimal experience)
+Live site is hosted at https://base-camp.netlify.com (Please log in with `email: demo@demo.com & pw: demo` for a sample user experience)
 
 ## Screenshot
 
