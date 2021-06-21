@@ -58,4 +58,5 @@ Live site is hosted at https://base-camp.netlify.com (Please log in with `email:
 MIT © jyang81
 
 ---
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Backend code is hosted at: https://github.com/jyang81/basecamp-rails
